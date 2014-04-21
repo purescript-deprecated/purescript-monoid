@@ -8,6 +8,13 @@ data First a = First (Maybe a)
 runFirst :: forall a. First a -> Maybe a
 runFirst (First m) = m
 
+instance eqFirst :: (Eq a) => Eq (First a) where
+  (==) (First x) (First y) = x == y
+  (/=) (First x) (First y) = x /= y
+  
+instance ordFirst :: (Ord a) => Ord (First a) where
+  compare (First x) (First y) = compare x y
+
 instance showFirst :: (Show a) => Show (First a) where
   show (First a) = "First (" ++ show a ++ ")"
 
