@@ -1,26 +1,29 @@
 module.exports = function(grunt) {
 
-    "use strict";
+  "use strict";
 
-    grunt.initConfig({ 
+  grunt.initConfig({ 
+  
+    libFiles: [
+      "src/**/*.purs",
+      "bower_components/purescript-*/src/**/*.purs"
+    ],
     
-        clean: ["externs", "js"],
-    
-        "purescript-make": {
-            options: {
-            },
-            lib: {
-                src:
-                    [ "src/**/*.purs"
-                    , "bower_components/purescript-*/src/**/*.purs"
-                    ]
-            }
-        }
-        
-    });
+    clean: {
+      dedupe: ["bower_components/purescript-monoid"],
+      tests: ["tmp"],
+      lib: ["js", "externs"]
+    },
+  
+    pscMake: ["<%=libFiles%>"],
+    dotPsci: ["<%=libFiles%>"]
+  
+  });
 
-    grunt.loadNpmTasks("grunt-purescript");
-    grunt.loadNpmTasks("grunt-contrib-clean");
-
-    grunt.registerTask("default", ["purescript-make:lib"]);
+  grunt.loadNpmTasks("grunt-contrib-clean");
+  grunt.loadNpmTasks("grunt-purescript");
+  grunt.loadNpmTasks("grunt-execute");
+  
+  grunt.registerTask("make", ["clean:dedupe", "pscMake", "dotPsci"]);
+  grunt.registerTask("default", ["make"]);
 };
