@@ -7,9 +7,11 @@
 
 ### Type Class Instances
 
+    instance monoidArray :: Monoid [a]
+
     instance monoidString :: Monoid Prim.String
 
----
+
 
 ## Data.Monoid.Dual
 
@@ -34,7 +36,7 @@
 
     runDual :: forall a. Dual a -> a
     
----
+
 
 ## Data.Monoid.Endo
 
@@ -53,7 +55,7 @@
 
     runEndo :: forall a. Endo a -> a -> a
     
----
+
 
 ## Data.Monoid.All
 
@@ -76,7 +78,7 @@
 
     runAll :: All -> Prim.Boolean
     
----
+
 
 ## Data.Monoid.Any
 
@@ -99,7 +101,7 @@
 
     runAny :: Any -> Prim.Boolean
     
----
+
 
 ## Data.Monoid.First
 
@@ -124,7 +126,7 @@
 
     runFirst :: forall a. First a -> Maybe a
     
----
+
 
 ## Data.Monoid.Last
 
@@ -149,7 +151,7 @@
 
     runLast :: forall a. Last a -> Maybe a
     
----
+
 
 ## Data.Monoid.Product
 
@@ -174,7 +176,7 @@
 
     runProduct :: Product -> Prim.Number
     
----
+
 
 ## Data.Monoid.Sum
 
