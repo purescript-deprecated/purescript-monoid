@@ -15,7 +15,7 @@ instance ordSum :: Ord Sum where
   compare (Sum x) (Sum y) = compare x y
 
 instance showSum :: Show Sum where
-  show (Sum a) = "Sum " ++ show a
+  show (Sum a) = "Sum (" ++ show a ++ ")"
 
 instance semigroupSum :: Semigroup Sum where
   (<>) (Sum x) (Sum y) = Sum (x + y)
