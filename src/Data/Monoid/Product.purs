@@ -15,7 +15,7 @@ instance ordProduct :: Ord Product where
   compare (Product x) (Product y) = compare x y
 
 instance showProduct :: Show Product where
-  show (Product a) = "Product " ++ show a
+  show (Product a) = "Product (" ++ show a ++ ")"
 
 instance semigroupProduct :: Semigroup Product where
   (<>) (Product x) (Product y) = Product (x * y)

@@ -12,7 +12,7 @@ instance eqAny :: Eq Any where
   (/=) (Any x) (Any y) = x /= y
   
 instance showAny :: Show Any where
-  show (Any a) = "Any " ++ show a
+  show (Any a) = "Any (" ++ show a ++ ")"
 
 instance semigroupAny :: Semigroup Any where
   (<>) (Any x) (Any y) = Any (x || y)

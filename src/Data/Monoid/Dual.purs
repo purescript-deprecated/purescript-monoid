@@ -15,7 +15,7 @@ instance ordDual :: (Ord a) => Ord (Dual a) where
   compare (Dual x) (Dual y) = compare x y
 
 instance showDual :: (Show a) => Show (Dual a) where
-  show (Dual a) = "Dual " ++ show a
+  show (Dual a) = "Dual (" ++ show a ++ ")"
 
 instance semigroupDual :: (Semigroup a) => Semigroup (Dual a) where
   (<>) (Dual x) (Dual y) = Dual (y <> x)
