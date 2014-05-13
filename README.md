@@ -14,6 +14,8 @@
 
     instance monoidString :: Monoid Prim.String
 
+    instance monoidUnit :: Monoid Unit
+
 
 ## Module Data.Monoid.All
 
