@@ -21,8 +21,8 @@
 
 ### Types
 
-    data All  where
-      All :: Prim.Boolean -> All 
+    data All where
+      All :: Boolean -> All
 
 
 ### Type Class Instances
@@ -38,15 +38,15 @@
 
 ### Values
 
-    runAll :: All -> Prim.Boolean
+    runAll :: All -> Boolean
 
 
 ## Module Data.Monoid.Any
 
 ### Types
 
-    data Any  where
-      Any :: Prim.Boolean -> Any 
+    data Any where
+      Any :: Boolean -> Any
 
 
 ### Type Class Instances
@@ -62,7 +62,7 @@
 
 ### Values
 
-    runAny :: Any -> Prim.Boolean
+    runAny :: Any -> Boolean
 
 
 ## Module Data.Monoid.Dual
@@ -167,8 +167,8 @@
 
 ### Types
 
-    data Product  where
-      Product :: Prim.Number -> Product 
+    data Product where
+      Product :: Number -> Product
 
 
 ### Type Class Instances
@@ -186,15 +186,15 @@
 
 ### Values
 
-    runProduct :: Product -> Prim.Number
+    runProduct :: Product -> Number
 
 
 ## Module Data.Monoid.Sum
 
 ### Types
 
-    data Sum  where
-      Sum :: Prim.Number -> Sum 
+    data Sum where
+      Sum :: Number -> Sum
 
 
 ### Type Class Instances
@@ -212,4 +212,4 @@
 
 ### Values
 
-    runSum :: Sum -> Prim.Number
+    runSum :: Sum -> Number
