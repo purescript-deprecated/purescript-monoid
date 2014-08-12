@@ -3,7 +3,7 @@ module Data.Monoid.First where
 import Data.Maybe
 import Data.Monoid
 
-data First a = First (Maybe a)
+newtype First a = First (Maybe a)
 
 runFirst :: forall a. First a -> Maybe a
 runFirst (First m) = m

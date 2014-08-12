@@ -2,7 +2,7 @@ module Data.Monoid.Dual where
 
 import Data.Monoid
 
-data Dual a = Dual a
+newtype Dual a = Dual a
 
 runDual :: forall a. Dual a -> a
 runDual (Dual x) = x

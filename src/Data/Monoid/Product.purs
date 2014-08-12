@@ -2,7 +2,7 @@ module Data.Monoid.Product where
 
 import Data.Monoid
 
-data Product = Product Number
+newtype Product = Product Number
 
 runProduct :: Product -> Number
 runProduct (Product x) = x

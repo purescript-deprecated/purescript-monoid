@@ -2,7 +2,7 @@ module Data.Monoid.Any where
 
 import Data.Monoid
 
-data Any = Any Boolean
+newtype Any = Any Boolean
 
 runAny :: Any -> Boolean
 runAny (Any x) = x

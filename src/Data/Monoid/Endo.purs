@@ -2,7 +2,7 @@ module Data.Monoid.Endo where
 
 import Data.Monoid
 
-data Endo a = Endo (a -> a)
+newtype Endo a = Endo (a -> a)
 
 runEndo :: forall a. Endo a -> a -> a
 runEndo (Endo f) = f

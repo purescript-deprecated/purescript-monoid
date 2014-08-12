@@ -3,7 +3,7 @@ module Data.Monoid.Last where
 import Data.Maybe
 import Data.Monoid
 
-data Last a = Last (Maybe a)
+newtype Last a = Last (Maybe a)
 
 runLast :: forall a. Last a -> Maybe a
 runLast (Last m) = m

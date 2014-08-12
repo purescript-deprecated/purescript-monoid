@@ -12,7 +12,7 @@
 
     instance monoidArray :: Monoid [a]
 
-    instance monoidString :: Monoid Prim.String
+    instance monoidString :: Monoid String
 
     instance monoidUnit :: Monoid Unit
 
@@ -21,7 +21,7 @@
 
 ### Types
 
-    data All where
+    newtype All where
       All :: Boolean -> All
 
 
@@ -45,7 +45,7 @@
 
 ### Types
 
-    data Any where
+    newtype Any where
       Any :: Boolean -> Any
 
 
@@ -69,7 +69,7 @@
 
 ### Types
 
-    data Dual a where
+    newtype Dual a where
       Dual :: a -> Dual a
 
 
@@ -95,7 +95,7 @@
 
 ### Types
 
-    data Endo a where
+    newtype Endo a where
       Endo :: a -> a -> Endo a
 
 
@@ -115,7 +115,7 @@
 
 ### Types
 
-    data First a where
+    newtype First a where
       First :: Maybe a -> First a
 
 
@@ -141,7 +141,7 @@
 
 ### Types
 
-    data Last a where
+    newtype Last a where
       Last :: Maybe a -> Last a
 
 
@@ -167,7 +167,7 @@
 
 ### Types
 
-    data Product where
+    newtype Product where
       Product :: Number -> Product
 
 
@@ -193,7 +193,7 @@
 
 ### Types
 
-    data Sum where
+    newtype Sum where
       Sum :: Number -> Sum
 
 

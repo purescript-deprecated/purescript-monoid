@@ -2,7 +2,7 @@ module Data.Monoid.Sum where
 
 import Data.Monoid
 
-data Sum = Sum Number
+newtype Sum = Sum Number
 
 runSum :: Sum -> Number
 runSum (Sum x) = x
