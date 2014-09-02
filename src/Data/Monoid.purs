@@ -10,6 +10,9 @@ instance monoidString :: Monoid String where
 
 instance monoidArray :: Monoid [a] where
   mempty = []
-  
+
 instance monoidUnit :: Monoid Unit where
   mempty = unit
+
+instance monoidArr :: (Monoid b) => Monoid (a -> b) where
+  mempty = const mempty

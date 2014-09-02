@@ -10,6 +10,8 @@
 
 ### Type Class Instances
 
+    instance monoidArr :: (Monoid b) => Monoid (a -> b)
+
     instance monoidArray :: Monoid [a]
 
     instance monoidString :: Monoid String
