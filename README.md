@@ -14,6 +14,8 @@
 
     instance monoidArray :: Monoid [a]
 
+    instance monoidMaybe :: (Semigroup a) => Monoid (Maybe a)
+
     instance monoidString :: Monoid String
 
     instance monoidUnit :: Monoid Unit
