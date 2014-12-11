@@ -100,7 +100,7 @@
 ### Types
 
     newtype Endo a where
-      Endo :: a -> a -> Endo a
+      Endo :: (a -> a) -> Endo a
 
 
 ### Type Class Instances
