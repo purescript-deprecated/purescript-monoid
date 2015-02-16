@@ -1,5 +1,7 @@
 module Data.Monoid.Additive where
 
+import Control.Comonad
+import Control.Extend
 import Data.Monoid
 
 newtype Additive a = Additive a
@@ -17,6 +19,9 @@ instance ordAdditive :: (Ord a) => Ord (Additive a) where
 instance functorAdditive :: Functor Additive where
   (<$>) f (Additive x) = Additive (f x)
 
+instance applyAdditive :: Apply Additive where
+  (<*>) (Additive f) (Additive x) = Additive (f x)
+
 instance applicativeAdditive :: Applicative Additive where
   pure x = Additive x
 
@@ -25,8 +30,11 @@ instance bindAdditive :: Bind Additive where
 
 instance monadAdditive :: Monad Additive
 
-instance applyAdditive :: Apply Additive where
-  (<*>) (Additive f) (Additive x) = Additive (f x)
+instance extendAdditive :: Extend Additive where
+  (<<=) f x = Additive (f x)
+
+instance comonadAdditive :: Comonad Additive where
+  extract (Additive x) = x
 
 instance showAdditive :: (Show a) => Show (Additive a) where
   show (Additive a) = "Additive (" ++ show a ++ ")"

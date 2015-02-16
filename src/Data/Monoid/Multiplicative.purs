@@ -1,5 +1,7 @@
 module Data.Monoid.Multiplicative where
 
+import Control.Comonad
+import Control.Extend
 import Data.Monoid
 
 newtype Multiplicative a = Multiplicative a
@@ -17,6 +19,9 @@ instance ordMultiplicative :: (Ord a) => Ord (Multiplicative a) where
 instance functorMultiplicative :: Functor Multiplicative where
   (<$>) f (Multiplicative x) = Multiplicative (f x)
 
+instance applyMultiplicative :: Apply Multiplicative where
+  (<*>) (Multiplicative f) (Multiplicative x) = Multiplicative (f x)
+
 instance applicativeMultiplicative :: Applicative Multiplicative where
   pure x = Multiplicative x
 
@@ -25,8 +30,11 @@ instance bindMultiplicative :: Bind Multiplicative where
 
 instance monadMultiplicative :: Monad Multiplicative
 
-instance applyMultiplicative :: Apply Multiplicative where
-  (<*>) (Multiplicative f) (Multiplicative x) = Multiplicative (f x)
+instance extendAdditive :: Extend Multiplicative where
+  (<<=) f x = Multiplicative (f x)
+
+instance comonadAdditive :: Comonad Multiplicative where
+  extract (Multiplicative x) = x
 
 instance showMultiplicative :: (Show a) => Show (Multiplicative a) where
   show (Multiplicative a) = "Multiplicative (" ++ show a ++ ")"

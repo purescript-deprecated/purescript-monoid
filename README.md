@@ -57,9 +57,17 @@
 
     instance bindAdditive :: Bind Additive
 
+#### `comonadAdditive`
+
+    instance comonadAdditive :: Comonad Additive
+
 #### `eqAdditive`
 
     instance eqAdditive :: (Eq a) => Eq (Additive a)
+
+#### `extendAdditive`
+
+    instance extendAdditive :: Extend Additive
 
 #### `functorAdditive`
 
@@ -337,9 +345,17 @@
 
     instance bindMultiplicative :: Bind Multiplicative
 
+#### `comonadAdditive`
+
+    instance comonadAdditive :: Comonad Multiplicative
+
 #### `eqMultiplicative`
 
     instance eqMultiplicative :: (Eq a) => Eq (Multiplicative a)
+
+#### `extendAdditive`
+
+    instance extendAdditive :: Extend Multiplicative
 
 #### `functorMultiplicative`
 
