@@ -42,8 +42,8 @@
 Monoid and semigroup for semirings under addition.
 
 ``` purescript
-Additive 5 <> Additive 10 == Additive 15
-mempty :: Additive Number == Additive 0
+Additive x <> Additive y == Additive (x + y)
+mempty :: Additive _ == Additive zero
 ```
 
     newtype Additive a
@@ -337,8 +337,8 @@ mempty :: Additive Number == Additive 0
 Monoid and semigroup for semirings under multiplication.
 
 ``` purescript
-Multiplicative 5 <> Multiplicative 10 == Multiplicative 50
-mempty :: Multiplicative Number == Multiplicative 0
+Multiplicative x <> Multiplicative y == Multiplicative (x * y)
+mempty :: Multiplicative _ == Multiplicative one
 ```
 
     newtype Multiplicative a
@@ -401,83 +401,3 @@ mempty :: Multiplicative Number == Multiplicative 0
 #### `runMultiplicative`
 
     runMultiplicative :: forall a. Multiplicative a -> a
-
-
-## Module Data.Monoid.Product
-
-### Types
-
-#### `Product`
-
-    newtype Product
-      = Product Number
-
-
-### Type Class Instances
-
-#### `eqProduct`
-
-    instance eqProduct :: Eq Product
-
-#### `monoidProduct`
-
-    instance monoidProduct :: Monoid Product
-
-#### `ordProduct`
-
-    instance ordProduct :: Ord Product
-
-#### `semigroupProduct`
-
-    instance semigroupProduct :: Semigroup Product
-
-#### `showProduct`
-
-    instance showProduct :: Show Product
-
-
-### Values
-
-#### `runProduct`
-
-    runProduct :: Product -> Number
-
-
-## Module Data.Monoid.Sum
-
-### Types
-
-#### `Sum`
-
-    newtype Sum
-      = Sum Number
-
-
-### Type Class Instances
-
-#### `eqSum`
-
-    instance eqSum :: Eq Sum
-
-#### `monoidSum`
-
-    instance monoidSum :: Monoid Sum
-
-#### `ordSum`
-
-    instance ordSum :: Ord Sum
-
-#### `semigroupSum`
-
-    instance semigroupSum :: Semigroup Sum
-
-#### `showSum`
-
-    instance showSum :: Show Sum
-
-
-### Values
-
-#### `runSum`
-
-    runSum :: Sum -> Number
