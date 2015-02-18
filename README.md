@@ -114,6 +114,13 @@ mempty :: Additive _ == Additive zero
 
 #### `All`
 
+Boolean monoid and semigroup under conjunction.
+
+``` purescript
+All x <> All y == All (x && y)
+mempty :: All == All true
+```
+
     newtype All
       = All Boolean
 
@@ -127,6 +134,10 @@ mempty :: Additive _ == Additive zero
 #### `monoidAll`
 
     instance monoidAll :: Monoid All
+
+#### `ordAll`
+
+    instance ordAll :: Ord All
 
 #### `semigroupAll`
 
@@ -150,6 +161,13 @@ mempty :: Additive _ == Additive zero
 
 #### `Any`
 
+Boolean monoid and semigroup under disjunction.
+
+``` purescript
+Any x <> Any y == Any (x || y)
+mempty :: Any == Any false
+```
+
     newtype Any
       = Any Boolean
 
@@ -163,6 +181,10 @@ mempty :: Additive _ == Additive zero
 #### `monoidAny`
 
     instance monoidAny :: Monoid Any
+
+#### `ordAny`
+
+    instance ordAny :: Ord Any
 
 #### `semigroupAny`
 
@@ -186,15 +208,50 @@ mempty :: Additive _ == Additive zero
 
 #### `Dual`
 
+The dual of a monoid.
+
+``` purescript
+Dual x <> Dual y == Dual (y <> x)
+mempty :: Dual _ == Dual mempty
+```
+
     newtype Dual a
       = Dual a
 
 
 ### Type Class Instances
 
+#### `applicativeDual`
+
+    instance applicativeDual :: Applicative Dual
+
+#### `applyDual`
+
+    instance applyDual :: Apply Dual
+
+#### `bindDual`
+
+    instance bindDual :: Bind Dual
+
+#### `comonadDual`
+
+    instance comonadDual :: Comonad Dual
+
 #### `eqDual`
 
     instance eqDual :: (Eq a) => Eq (Dual a)
+
+#### `extendDual`
+
+    instance extendDual :: Extend Dual
+
+#### `functorDual`
+
+    instance functorDual :: Functor Dual
+
+#### `monadDual`
+
+    instance monadDual :: Monad Dual
 
 #### `monoidDual`
 
@@ -226,6 +283,14 @@ mempty :: Additive _ == Additive zero
 
 #### `Endo`
 
+Monoid of endomorphisms under composition.
+
+Composes of functions of type `a -> a`:
+``` purescript
+Endo f <> Endo g == Endo (f <<< g)
+mempty :: Endo _ == Endo id
+```
+
     newtype Endo a
       = Endo (a -> a)
 
@@ -254,15 +319,48 @@ mempty :: Additive _ == Additive zero
 
 #### `First`
 
+Monoid returning the first (left-most) non-Nothing value.
+
+``` purescript
+First First (Just x) <> First (Just y) == First (Just x)
+First Nothing <> First (Just y) == First (Just x)
+First Nothing <> Nothing == First Nothing
+mempty :: First _ == First Nothing
+```
+
     newtype First a
       = First (Maybe a)
 
 
 ### Type Class Instances
 
+#### `applicativeFirst`
+
+    instance applicativeFirst :: Applicative First
+
+#### `applyFirst`
+
+    instance applyFirst :: Apply First
+
+#### `bindFirst`
+
+    instance bindFirst :: Bind First
+
 #### `eqFirst`
 
     instance eqFirst :: (Eq a) => Eq (First a)
+
+#### `extendFirst`
+
+    instance extendFirst :: Extend First
+
+#### `functorFirst`
+
+    instance functorFirst :: Functor First
+
+#### `monadFirst`
+
+    instance monadFirst :: Monad First
 
 #### `monoidFirst`
 
@@ -294,15 +392,48 @@ mempty :: Additive _ == Additive zero
 
 #### `Last`
 
+Monoid returning the last (right-most) non-Nothing value.
+
+``` purescript
+First First (Just x) <> First (Just y) == First (Just y)
+First First (Just x) <> Nothing == First (Just x)
+First Nothing <> Nothing == First Nothing
+mempty :: First _ == First Nothing
+```
+
     newtype Last a
       = Last (Maybe a)
 
 
 ### Type Class Instances
 
+#### `applicativeLast`
+
+    instance applicativeLast :: Applicative Last
+
+#### `applyLast`
+
+    instance applyLast :: Apply Last
+
+#### `bindLast`
+
+    instance bindLast :: Bind Last
+
 #### `eqLast`
 
     instance eqLast :: (Eq a) => Eq (Last a)
+
+#### `extendLast`
+
+    instance extendLast :: Extend Last
+
+#### `functorLast`
+
+    instance functorLast :: Functor Last
+
+#### `monadLast`
+
+    instance monadLast :: Monad Last
 
 #### `monoidLast`
 
