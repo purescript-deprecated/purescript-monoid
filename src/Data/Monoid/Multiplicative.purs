@@ -7,8 +7,8 @@ import Data.Monoid
 -- | Monoid and semigroup for semirings under multiplication.
 -- |
 -- | ``` purescript
--- | Multiplicative 5 <> Multiplicative 10 == Multiplicative 50
--- | mempty :: Multiplicative Number == Multiplicative 0
+-- | Multiplicative x <> Multiplicative y == Multiplicative (x * y)
+-- | mempty :: Multiplicative _ == Multiplicative one
 -- | ```
 newtype Multiplicative a = Multiplicative a
 

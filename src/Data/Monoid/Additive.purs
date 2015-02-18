@@ -7,8 +7,8 @@ import Data.Monoid
 -- | Monoid and semigroup for semirings under addition.
 -- |
 -- | ``` purescript
--- | Additive 5 <> Additive 10 == Additive 15
--- | mempty :: Additive Number == Additive 0
+-- | Additive x <> Additive y == Additive (x + y)
+-- | mempty :: Additive _ == Additive zero
 -- | ```
 newtype Additive a = Additive a
 
