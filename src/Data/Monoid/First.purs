@@ -8,7 +8,7 @@ import Data.Monoid
 -- | Monoid returning the first (left-most) non-Nothing value.
 -- |
 -- | ``` purescript
--- | First First (Just x) <> First (Just y) == First (Just x)
+-- | First (Just x) <> First (Just y) == First (Just x)
 -- | First Nothing <> First (Just y) == First (Just x)
 -- | First Nothing <> Nothing == First Nothing
 -- | mempty :: First _ == First Nothing

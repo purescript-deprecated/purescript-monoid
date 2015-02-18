@@ -8,10 +8,10 @@ import Data.Monoid
 -- | Monoid returning the last (right-most) non-Nothing value.
 -- |
 -- | ``` purescript
--- | First First (Just x) <> First (Just y) == First (Just y)
--- | First First (Just x) <> Nothing == First (Just x)
--- | First Nothing <> Nothing == First Nothing
--- | mempty :: First _ == First Nothing
+-- | Last (Just x) <> Last (Just y) == Last (Just y)
+-- | Last (Just x) <> Nothing == Last (Just x)
+-- | Last Nothing <> Nothing == Last Nothing
+-- | mempty :: Last _ == Last Nothing
 -- | ```
 newtype Last a = Last (Maybe a)
 
