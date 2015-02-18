@@ -39,6 +39,13 @@
 
 #### `Additive`
 
+Monoid and semigroup for semirings under addition.
+
+``` purescript
+Additive 5 <> Additive 10 == Additive 15
+mempty :: Additive Number == Additive 0
+```
+
     newtype Additive a
       = Additive a
 
@@ -326,6 +333,13 @@
 ### Types
 
 #### `Multiplicative`
+
+Monoid and semigroup for semirings under multiplication.
+
+``` purescript
+Multiplicative 5 <> Multiplicative 10 == Multiplicative 50
+mempty :: Multiplicative Number == Multiplicative 0
+```
 
     newtype Multiplicative a
       = Multiplicative a

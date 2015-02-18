@@ -4,6 +4,12 @@ import Control.Comonad
 import Control.Extend
 import Data.Monoid
 
+-- | Monoid and semigroup for semirings under addition.
+-- |
+-- | ``` purescript
+-- | Additive 5 <> Additive 10 == Additive 15
+-- | mempty :: Additive Number == Additive 0
+-- | ```
 newtype Additive a = Additive a
 
 runAdditive :: forall a. Additive a -> a
@@ -23,7 +29,7 @@ instance applyAdditive :: Apply Additive where
   (<*>) (Additive f) (Additive x) = Additive (f x)
 
 instance applicativeAdditive :: Applicative Additive where
-  pure x = Additive x
+  pure = Additive
 
 instance bindAdditive :: Bind Additive where
   (>>=) (Additive x) f = f x
@@ -34,7 +40,7 @@ instance extendAdditive :: Extend Additive where
   (<<=) f x = Additive (f x)
 
 instance comonadAdditive :: Comonad Additive where
-  extract (Additive x) = x
+  extract = runAdditive
 
 instance showAdditive :: (Show a) => Show (Additive a) where
   show (Additive a) = "Additive (" ++ show a ++ ")"

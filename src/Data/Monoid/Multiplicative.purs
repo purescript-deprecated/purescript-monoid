@@ -4,6 +4,12 @@ import Control.Comonad
 import Control.Extend
 import Data.Monoid
 
+-- | Monoid and semigroup for semirings under multiplication.
+-- |
+-- | ``` purescript
+-- | Multiplicative 5 <> Multiplicative 10 == Multiplicative 50
+-- | mempty :: Multiplicative Number == Multiplicative 0
+-- | ```
 newtype Multiplicative a = Multiplicative a
 
 runMultiplicative :: forall a. Multiplicative a -> a
@@ -23,7 +29,7 @@ instance applyMultiplicative :: Apply Multiplicative where
   (<*>) (Multiplicative f) (Multiplicative x) = Multiplicative (f x)
 
 instance applicativeMultiplicative :: Applicative Multiplicative where
-  pure x = Multiplicative x
+  pure = Multiplicative
 
 instance bindMultiplicative :: Bind Multiplicative where
   (>>=) (Multiplicative x) f = f x
@@ -34,7 +40,7 @@ instance extendAdditive :: Extend Multiplicative where
   (<<=) f x = Multiplicative (f x)
 
 instance comonadAdditive :: Comonad Multiplicative where
-  extract (Multiplicative x) = x
+  extract = runMultiplicative
 
 instance showMultiplicative :: (Show a) => Show (Multiplicative a) where
   show (Multiplicative a) = "Multiplicative (" ++ show a ++ ")"
