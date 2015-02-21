@@ -1,3 +1,9 @@
+# Breaking change notice
+
+> `purescript-monoid` v0.2.0 requires PureScript v0.6.8 or later as previously the `Semiring` class did not exist in `Prelude`.
+
+---
+
 # Module Documentation
 
 ## Module Data.Monoid
