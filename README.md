@@ -1,49 +1,75 @@
-# Breaking change notice
+# Breaking Change Notice
 
-> `purescript-monoid` v0.2.0 requires PureScript v0.6.8 or later as previously the `Semiring` class did not exist in `Prelude`.
+`purescript-monoid` v0.2.0 requires PureScript v0.6.8 or later as previously the `Semiring` class did not exist in `Prelude`.
 
----
+----
 
 # Module Documentation
 
 ## Module Data.Monoid
 
-### Type Classes
-
 #### `Monoid`
 
-    class (Semigroup m) <= Monoid m where
-      mempty :: m
+``` purescript
+class (Semigroup m) <= Monoid m where
+  mempty :: m
+```
 
+A `Monoid` is a `Semigroup` with a value `mempty`, which is both a
+left and right unit for the associative operation `<>`:
 
-### Type Class Instances
+```text
+forall x. mempty <> x = x <> mempty = x
+```
 
-#### `monoidArr`
-
-    instance monoidArr :: (Monoid b) => Monoid (a -> b)
-
-#### `monoidArray`
-
-    instance monoidArray :: Monoid [a]
-
-#### `monoidMaybe`
-
-    instance monoidMaybe :: (Semigroup a) => Monoid (Maybe a)
+`Monoid`s are commonly used as the result of fold operations, where
+`<>` is used to combine individual results, and `mempty` gives the result
+of folding an empty collection of elements.
 
 #### `monoidString`
 
-    instance monoidString :: Monoid String
+``` purescript
+instance monoidString :: Monoid String
+```
+
+
+#### `monoidArray`
+
+``` purescript
+instance monoidArray :: Monoid [a]
+```
+
 
 #### `monoidUnit`
 
-    instance monoidUnit :: Monoid Unit
+``` purescript
+instance monoidUnit :: Monoid Unit
+```
+
+
+#### `monoidArr`
+
+``` purescript
+instance monoidArr :: (Monoid b) => Monoid (a -> b)
+```
+
+
+#### `monoidMaybe`
+
+``` purescript
+instance monoidMaybe :: (Semigroup a) => Monoid (Maybe a)
+```
+
 
 
 ## Module Data.Monoid.Additive
 
-### Types
-
 #### `Additive`
+
+``` purescript
+newtype Additive a
+  = Additive a
+```
 
 Monoid and semigroup for semirings under addition.
 
@@ -52,73 +78,106 @@ Additive x <> Additive y == Additive (x + y)
 mempty :: Additive _ == Additive zero
 ```
 
-    newtype Additive a
-      = Additive a
+#### `runAdditive`
 
+``` purescript
+runAdditive :: forall a. Additive a -> a
+```
 
-### Type Class Instances
-
-#### `applicativeAdditive`
-
-    instance applicativeAdditive :: Applicative Additive
-
-#### `applyAdditive`
-
-    instance applyAdditive :: Apply Additive
-
-#### `bindAdditive`
-
-    instance bindAdditive :: Bind Additive
-
-#### `comonadAdditive`
-
-    instance comonadAdditive :: Comonad Additive
 
 #### `eqAdditive`
 
-    instance eqAdditive :: (Eq a) => Eq (Additive a)
+``` purescript
+instance eqAdditive :: (Eq a) => Eq (Additive a)
+```
 
-#### `extendAdditive`
-
-    instance extendAdditive :: Extend Additive
-
-#### `functorAdditive`
-
-    instance functorAdditive :: Functor Additive
-
-#### `monadAdditive`
-
-    instance monadAdditive :: Monad Additive
-
-#### `monoidAdditive`
-
-    instance monoidAdditive :: (Semiring a) => Monoid (Additive a)
 
 #### `ordAdditive`
 
-    instance ordAdditive :: (Ord a) => Ord (Additive a)
+``` purescript
+instance ordAdditive :: (Ord a) => Ord (Additive a)
+```
 
-#### `semigroupAdditive`
 
-    instance semigroupAdditive :: (Semiring a) => Semigroup (Additive a)
+#### `functorAdditive`
+
+``` purescript
+instance functorAdditive :: Functor Additive
+```
+
+
+#### `applyAdditive`
+
+``` purescript
+instance applyAdditive :: Apply Additive
+```
+
+
+#### `applicativeAdditive`
+
+``` purescript
+instance applicativeAdditive :: Applicative Additive
+```
+
+
+#### `bindAdditive`
+
+``` purescript
+instance bindAdditive :: Bind Additive
+```
+
+
+#### `monadAdditive`
+
+``` purescript
+instance monadAdditive :: Monad Additive
+```
+
+
+#### `extendAdditive`
+
+``` purescript
+instance extendAdditive :: Extend Additive
+```
+
+
+#### `comonadAdditive`
+
+``` purescript
+instance comonadAdditive :: Comonad Additive
+```
+
 
 #### `showAdditive`
 
-    instance showAdditive :: (Show a) => Show (Additive a)
+``` purescript
+instance showAdditive :: (Show a) => Show (Additive a)
+```
 
 
-### Values
+#### `semigroupAdditive`
 
-#### `runAdditive`
+``` purescript
+instance semigroupAdditive :: (Semiring a) => Semigroup (Additive a)
+```
 
-    runAdditive :: forall a. Additive a -> a
+
+#### `monoidAdditive`
+
+``` purescript
+instance monoidAdditive :: (Semiring a) => Monoid (Additive a)
+```
+
 
 
 ## Module Data.Monoid.All
 
-### Types
-
 #### `All`
+
+``` purescript
+newtype All
+  = All Boolean
+```
 
 Boolean monoid and semigroup under conjunction.
 
@@ -127,45 +186,57 @@ All x <> All y == All (x && y)
 mempty :: All == All true
 ```
 
-    newtype All
-      = All Boolean
+#### `runAll`
 
+``` purescript
+runAll :: All -> Boolean
+```
 
-### Type Class Instances
 
 #### `eqAll`
 
-    instance eqAll :: Eq All
+``` purescript
+instance eqAll :: Eq All
+```
 
-#### `monoidAll`
-
-    instance monoidAll :: Monoid All
 
 #### `ordAll`
 
-    instance ordAll :: Ord All
+``` purescript
+instance ordAll :: Ord All
+```
 
-#### `semigroupAll`
-
-    instance semigroupAll :: Semigroup All
 
 #### `showAll`
 
-    instance showAll :: Show All
+``` purescript
+instance showAll :: Show All
+```
 
 
-### Values
+#### `semigroupAll`
 
-#### `runAll`
+``` purescript
+instance semigroupAll :: Semigroup All
+```
 
-    runAll :: All -> Boolean
+
+#### `monoidAll`
+
+``` purescript
+instance monoidAll :: Monoid All
+```
+
 
 
 ## Module Data.Monoid.Any
 
-### Types
-
 #### `Any`
+
+``` purescript
+newtype Any
+  = Any Boolean
+```
 
 Boolean monoid and semigroup under disjunction.
 
@@ -174,45 +245,57 @@ Any x <> Any y == Any (x || y)
 mempty :: Any == Any false
 ```
 
-    newtype Any
-      = Any Boolean
+#### `runAny`
 
+``` purescript
+runAny :: Any -> Boolean
+```
 
-### Type Class Instances
 
 #### `eqAny`
 
-    instance eqAny :: Eq Any
+``` purescript
+instance eqAny :: Eq Any
+```
 
-#### `monoidAny`
-
-    instance monoidAny :: Monoid Any
 
 #### `ordAny`
 
-    instance ordAny :: Ord Any
+``` purescript
+instance ordAny :: Ord Any
+```
 
-#### `semigroupAny`
-
-    instance semigroupAny :: Semigroup Any
 
 #### `showAny`
 
-    instance showAny :: Show Any
+``` purescript
+instance showAny :: Show Any
+```
 
 
-### Values
+#### `semigroupAny`
 
-#### `runAny`
+``` purescript
+instance semigroupAny :: Semigroup Any
+```
 
-    runAny :: Any -> Boolean
+
+#### `monoidAny`
+
+``` purescript
+instance monoidAny :: Monoid Any
+```
+
 
 
 ## Module Data.Monoid.Dual
 
-### Types
-
 #### `Dual`
+
+``` purescript
+newtype Dual a
+  = Dual a
+```
 
 The dual of a monoid.
 
@@ -221,73 +304,106 @@ Dual x <> Dual y == Dual (y <> x)
 mempty :: Dual _ == Dual mempty
 ```
 
-    newtype Dual a
-      = Dual a
+#### `runDual`
 
+``` purescript
+runDual :: forall a. Dual a -> a
+```
 
-### Type Class Instances
-
-#### `applicativeDual`
-
-    instance applicativeDual :: Applicative Dual
-
-#### `applyDual`
-
-    instance applyDual :: Apply Dual
-
-#### `bindDual`
-
-    instance bindDual :: Bind Dual
-
-#### `comonadDual`
-
-    instance comonadDual :: Comonad Dual
 
 #### `eqDual`
 
-    instance eqDual :: (Eq a) => Eq (Dual a)
+``` purescript
+instance eqDual :: (Eq a) => Eq (Dual a)
+```
 
-#### `extendDual`
-
-    instance extendDual :: Extend Dual
-
-#### `functorDual`
-
-    instance functorDual :: Functor Dual
-
-#### `monadDual`
-
-    instance monadDual :: Monad Dual
-
-#### `monoidDual`
-
-    instance monoidDual :: (Monoid a) => Monoid (Dual a)
 
 #### `ordDual`
 
-    instance ordDual :: (Ord a) => Ord (Dual a)
+``` purescript
+instance ordDual :: (Ord a) => Ord (Dual a)
+```
 
-#### `semigroupDual`
 
-    instance semigroupDual :: (Semigroup a) => Semigroup (Dual a)
+#### `functorDual`
+
+``` purescript
+instance functorDual :: Functor Dual
+```
+
+
+#### `applyDual`
+
+``` purescript
+instance applyDual :: Apply Dual
+```
+
+
+#### `applicativeDual`
+
+``` purescript
+instance applicativeDual :: Applicative Dual
+```
+
+
+#### `bindDual`
+
+``` purescript
+instance bindDual :: Bind Dual
+```
+
+
+#### `monadDual`
+
+``` purescript
+instance monadDual :: Monad Dual
+```
+
+
+#### `extendDual`
+
+``` purescript
+instance extendDual :: Extend Dual
+```
+
+
+#### `comonadDual`
+
+``` purescript
+instance comonadDual :: Comonad Dual
+```
+
 
 #### `showDual`
 
-    instance showDual :: (Show a) => Show (Dual a)
+``` purescript
+instance showDual :: (Show a) => Show (Dual a)
+```
 
 
-### Values
+#### `semigroupDual`
 
-#### `runDual`
+``` purescript
+instance semigroupDual :: (Semigroup a) => Semigroup (Dual a)
+```
 
-    runDual :: forall a. Dual a -> a
+
+#### `monoidDual`
+
+``` purescript
+instance monoidDual :: (Monoid a) => Monoid (Dual a)
+```
+
 
 
 ## Module Data.Monoid.Endo
 
-### Types
-
 #### `Endo`
+
+``` purescript
+newtype Endo a
+  = Endo (a -> a)
+```
 
 Monoid of endomorphisms under composition.
 
@@ -297,33 +413,36 @@ Endo f <> Endo g == Endo (f <<< g)
 mempty :: Endo _ == Endo id
 ```
 
-    newtype Endo a
-      = Endo (a -> a)
+#### `runEndo`
 
+``` purescript
+runEndo :: forall a. Endo a -> a -> a
+```
 
-### Type Class Instances
-
-#### `monoidEndo`
-
-    instance monoidEndo :: Monoid (Endo a)
 
 #### `semigroupEndo`
 
-    instance semigroupEndo :: Semigroup (Endo a)
+``` purescript
+instance semigroupEndo :: Semigroup (Endo a)
+```
 
 
-### Values
+#### `monoidEndo`
 
-#### `runEndo`
+``` purescript
+instance monoidEndo :: Monoid (Endo a)
+```
 
-    runEndo :: forall a. Endo a -> a -> a
 
 
 ## Module Data.Monoid.First
 
-### Types
-
 #### `First`
+
+``` purescript
+newtype First a
+  = First (Maybe a)
+```
 
 Monoid returning the first (left-most) non-Nothing value.
 
@@ -334,69 +453,99 @@ First Nothing <> Nothing == First Nothing
 mempty :: First _ == First Nothing
 ```
 
-    newtype First a
-      = First (Maybe a)
+#### `runFirst`
 
+``` purescript
+runFirst :: forall a. First a -> Maybe a
+```
 
-### Type Class Instances
-
-#### `applicativeFirst`
-
-    instance applicativeFirst :: Applicative First
-
-#### `applyFirst`
-
-    instance applyFirst :: Apply First
-
-#### `bindFirst`
-
-    instance bindFirst :: Bind First
 
 #### `eqFirst`
 
-    instance eqFirst :: (Eq a) => Eq (First a)
+``` purescript
+instance eqFirst :: (Eq a) => Eq (First a)
+```
 
-#### `extendFirst`
-
-    instance extendFirst :: Extend First
-
-#### `functorFirst`
-
-    instance functorFirst :: Functor First
-
-#### `monadFirst`
-
-    instance monadFirst :: Monad First
-
-#### `monoidFirst`
-
-    instance monoidFirst :: Monoid (First a)
 
 #### `ordFirst`
 
-    instance ordFirst :: (Ord a) => Ord (First a)
+``` purescript
+instance ordFirst :: (Ord a) => Ord (First a)
+```
 
-#### `semigroupFirst`
 
-    instance semigroupFirst :: Semigroup (First a)
+#### `functorFirst`
+
+``` purescript
+instance functorFirst :: Functor First
+```
+
+
+#### `applyFirst`
+
+``` purescript
+instance applyFirst :: Apply First
+```
+
+
+#### `applicativeFirst`
+
+``` purescript
+instance applicativeFirst :: Applicative First
+```
+
+
+#### `bindFirst`
+
+``` purescript
+instance bindFirst :: Bind First
+```
+
+
+#### `monadFirst`
+
+``` purescript
+instance monadFirst :: Monad First
+```
+
+
+#### `extendFirst`
+
+``` purescript
+instance extendFirst :: Extend First
+```
+
 
 #### `showFirst`
 
-    instance showFirst :: (Show a) => Show (First a)
+``` purescript
+instance showFirst :: (Show a) => Show (First a)
+```
 
 
-### Values
+#### `semigroupFirst`
 
-#### `runFirst`
+``` purescript
+instance semigroupFirst :: Semigroup (First a)
+```
 
-    runFirst :: forall a. First a -> Maybe a
+
+#### `monoidFirst`
+
+``` purescript
+instance monoidFirst :: Monoid (First a)
+```
+
 
 
 ## Module Data.Monoid.Last
 
-### Types
-
 #### `Last`
+
+``` purescript
+newtype Last a
+  = Last (Maybe a)
+```
 
 Monoid returning the last (right-most) non-Nothing value.
 
@@ -407,69 +556,99 @@ Last Nothing <> Nothing == Last Nothing
 mempty :: Last _ == Last Nothing
 ```
 
-    newtype Last a
-      = Last (Maybe a)
+#### `runLast`
 
+``` purescript
+runLast :: forall a. Last a -> Maybe a
+```
 
-### Type Class Instances
-
-#### `applicativeLast`
-
-    instance applicativeLast :: Applicative Last
-
-#### `applyLast`
-
-    instance applyLast :: Apply Last
-
-#### `bindLast`
-
-    instance bindLast :: Bind Last
 
 #### `eqLast`
 
-    instance eqLast :: (Eq a) => Eq (Last a)
+``` purescript
+instance eqLast :: (Eq a) => Eq (Last a)
+```
 
-#### `extendLast`
-
-    instance extendLast :: Extend Last
-
-#### `functorLast`
-
-    instance functorLast :: Functor Last
-
-#### `monadLast`
-
-    instance monadLast :: Monad Last
-
-#### `monoidLast`
-
-    instance monoidLast :: Monoid (Last a)
 
 #### `ordLast`
 
-    instance ordLast :: (Ord a) => Ord (Last a)
+``` purescript
+instance ordLast :: (Ord a) => Ord (Last a)
+```
 
-#### `semigroupLast`
 
-    instance semigroupLast :: Semigroup (Last a)
+#### `functorLast`
+
+``` purescript
+instance functorLast :: Functor Last
+```
+
+
+#### `applyLast`
+
+``` purescript
+instance applyLast :: Apply Last
+```
+
+
+#### `applicativeLast`
+
+``` purescript
+instance applicativeLast :: Applicative Last
+```
+
+
+#### `bindLast`
+
+``` purescript
+instance bindLast :: Bind Last
+```
+
+
+#### `monadLast`
+
+``` purescript
+instance monadLast :: Monad Last
+```
+
+
+#### `extendLast`
+
+``` purescript
+instance extendLast :: Extend Last
+```
+
 
 #### `showLast`
 
-    instance showLast :: (Show a) => Show (Last a)
+``` purescript
+instance showLast :: (Show a) => Show (Last a)
+```
 
 
-### Values
+#### `semigroupLast`
 
-#### `runLast`
+``` purescript
+instance semigroupLast :: Semigroup (Last a)
+```
 
-    runLast :: forall a. Last a -> Maybe a
+
+#### `monoidLast`
+
+``` purescript
+instance monoidLast :: Monoid (Last a)
+```
+
 
 
 ## Module Data.Monoid.Multiplicative
 
-### Types
-
 #### `Multiplicative`
+
+``` purescript
+newtype Multiplicative a
+  = Multiplicative a
+```
 
 Monoid and semigroup for semirings under multiplication.
 
@@ -478,63 +657,92 @@ Multiplicative x <> Multiplicative y == Multiplicative (x * y)
 mempty :: Multiplicative _ == Multiplicative one
 ```
 
-    newtype Multiplicative a
-      = Multiplicative a
+#### `runMultiplicative`
 
+``` purescript
+runMultiplicative :: forall a. Multiplicative a -> a
+```
 
-### Type Class Instances
-
-#### `applicativeMultiplicative`
-
-    instance applicativeMultiplicative :: Applicative Multiplicative
-
-#### `applyMultiplicative`
-
-    instance applyMultiplicative :: Apply Multiplicative
-
-#### `bindMultiplicative`
-
-    instance bindMultiplicative :: Bind Multiplicative
-
-#### `comonadAdditive`
-
-    instance comonadAdditive :: Comonad Multiplicative
 
 #### `eqMultiplicative`
 
-    instance eqMultiplicative :: (Eq a) => Eq (Multiplicative a)
+``` purescript
+instance eqMultiplicative :: (Eq a) => Eq (Multiplicative a)
+```
 
-#### `extendAdditive`
-
-    instance extendAdditive :: Extend Multiplicative
-
-#### `functorMultiplicative`
-
-    instance functorMultiplicative :: Functor Multiplicative
-
-#### `monadMultiplicative`
-
-    instance monadMultiplicative :: Monad Multiplicative
-
-#### `monoidMultiplicative`
-
-    instance monoidMultiplicative :: (Semiring a) => Monoid (Multiplicative a)
 
 #### `ordMultiplicative`
 
-    instance ordMultiplicative :: (Ord a) => Ord (Multiplicative a)
+``` purescript
+instance ordMultiplicative :: (Ord a) => Ord (Multiplicative a)
+```
 
-#### `semigroupMultiplicative`
 
-    instance semigroupMultiplicative :: (Semiring a) => Semigroup (Multiplicative a)
+#### `functorMultiplicative`
+
+``` purescript
+instance functorMultiplicative :: Functor Multiplicative
+```
+
+
+#### `applyMultiplicative`
+
+``` purescript
+instance applyMultiplicative :: Apply Multiplicative
+```
+
+
+#### `applicativeMultiplicative`
+
+``` purescript
+instance applicativeMultiplicative :: Applicative Multiplicative
+```
+
+
+#### `bindMultiplicative`
+
+``` purescript
+instance bindMultiplicative :: Bind Multiplicative
+```
+
+
+#### `monadMultiplicative`
+
+``` purescript
+instance monadMultiplicative :: Monad Multiplicative
+```
+
+
+#### `extendAdditive`
+
+``` purescript
+instance extendAdditive :: Extend Multiplicative
+```
+
+
+#### `comonadAdditive`
+
+``` purescript
+instance comonadAdditive :: Comonad Multiplicative
+```
+
 
 #### `showMultiplicative`
 
-    instance showMultiplicative :: (Show a) => Show (Multiplicative a)
+``` purescript
+instance showMultiplicative :: (Show a) => Show (Multiplicative a)
+```
 
 
-### Values
+#### `semigroupMultiplicative`
 
-#### `runMultiplicative`
+``` purescript
+instance semigroupMultiplicative :: (Semiring a) => Semigroup (Multiplicative a)
+```
 
-    runMultiplicative :: forall a. Multiplicative a -> a
+
+#### `monoidMultiplicative`
+
+``` purescript
+instance monoidMultiplicative :: (Semiring a) => Monoid (Multiplicative a)
+```
