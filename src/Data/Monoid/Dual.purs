@@ -2,6 +2,7 @@ module Data.Monoid.Dual where
 
 import Control.Comonad (Comonad)
 import Control.Extend (Extend)
+import Data.Functor.Invariant (Invariant, invmap)
 import Data.Monoid
 
 -- | The dual of a monoid.
@@ -41,6 +42,9 @@ instance extendDual :: Extend Dual where
 
 instance comonadDual :: Comonad Dual where
   extract = runDual
+
+instance invariantDual :: Invariant Dual where
+  invmap f _ (Dual x) = Dual (f x)
 
 instance showDual :: (Show a) => Show (Dual a) where
   show (Dual a) = "Dual (" ++ show a ++ ")"

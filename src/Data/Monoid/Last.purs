@@ -2,6 +2,7 @@ module Data.Monoid.Last where
 
 import Control.Comonad (Comonad)
 import Control.Extend (Extend, (<<=))
+import Data.Functor.Invariant (Invariant, invmap)
 import Data.Maybe (Maybe(..))
 import Data.Monoid
 
@@ -41,6 +42,9 @@ instance monadLast :: Monad Last
 
 instance extendLast :: Extend Last where
   (<<=) f x = f <<= x
+
+instance invariantLast :: Invariant Last where
+  invmap f _ (Last x) = Last (f <$> x)
 
 instance showLast :: (Show a) => Show (Last a) where
   show (Last a) = "Last (" ++ show a ++ ")"

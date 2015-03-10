@@ -72,17 +72,24 @@ instance monadMultiplicative :: Monad Multiplicative
 ```
 
 
-#### `extendAdditive`
+#### `extendMultiplicative`
 
 ``` purescript
-instance extendAdditive :: Extend Multiplicative
+instance extendMultiplicative :: Extend Multiplicative
 ```
 
 
-#### `comonadAdditive`
+#### `comonadMultiplicative`
 
 ``` purescript
-instance comonadAdditive :: Comonad Multiplicative
+instance comonadMultiplicative :: Comonad Multiplicative
+```
+
+
+#### `invariantMultiplicative`
+
+``` purescript
+instance invariantMultiplicative :: Invariant Multiplicative
 ```
 
 

@@ -24,6 +24,13 @@ runEndo :: forall a. Endo a -> a -> a
 ```
 
 
+#### `invariantEndo`
+
+``` purescript
+instance invariantEndo :: Invariant Endo
+```
+
+
 #### `semigroupEndo`
 
 ``` purescript

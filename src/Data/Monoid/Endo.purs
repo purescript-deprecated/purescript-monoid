@@ -1,5 +1,6 @@
 module Data.Monoid.Endo where
 
+import Data.Functor.Invariant (Invariant, invmap)
 import Data.Monoid
 
 -- | Monoid of endomorphisms under composition.
@@ -13,6 +14,9 @@ newtype Endo a = Endo (a -> a)
 
 runEndo :: forall a. Endo a -> a -> a
 runEndo (Endo f) = f
+
+instance invariantEndo :: Invariant Endo where
+  invmap ab ba (Endo f) = Endo (ab <<< f <<< ba)
 
 instance semigroupEndo :: Semigroup (Endo a) where
   (<>) (Endo f) (Endo g) = Endo (f <<< g)

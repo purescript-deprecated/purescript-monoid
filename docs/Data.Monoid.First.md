@@ -81,6 +81,13 @@ instance extendFirst :: Extend First
 ```
 
 
+#### `invariantFirst`
+
+``` purescript
+instance invariantFirst :: Invariant First
+```
+
+
 #### `showFirst`
 
 ``` purescript

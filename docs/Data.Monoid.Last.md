@@ -81,6 +81,13 @@ instance extendLast :: Extend Last
 ```
 
 
+#### `invariantLast`
+
+``` purescript
+instance invariantLast :: Invariant Last
+```
+
+
 #### `showLast`
 
 ``` purescript
