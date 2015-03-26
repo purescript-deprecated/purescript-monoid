@@ -9,7 +9,7 @@ import Data.Monoid
 -- |
 -- | ``` purescript
 -- | First (Just x) <> First (Just y) == First (Just x)
--- | First Nothing <> First (Just y) == First (Just x)
+-- | First Nothing <> First (Just y) == First (Just y)
 -- | First Nothing <> Nothing == First Nothing
 -- | mempty :: First _ == First Nothing
 -- | ```
