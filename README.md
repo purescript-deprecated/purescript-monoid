@@ -1,6 +1,6 @@
 # Breaking Change Notice
 
-`purescript-monoid` v0.2.0 requires PureScript v0.6.8 or later as previously the `Semiring` class did not exist in `Prelude`.
+`purescript-monoid` v0.3.0 requires PureScript v0.6.10 or later as previously the `Semiring` and `Lattice` classes did not exist in `Prelude`.
 
 ----
 
@@ -170,120 +170,218 @@ instance monoidAdditive :: (Semiring a) => Monoid (Additive a)
 
 
 
-## Module Data.Monoid.All
+## Module Data.Monoid.Conjunction
 
-#### `All`
+#### `Conjunction`
 
 ``` purescript
-newtype All
-  = All Boolean
+newtype Conjunction a
+  = Conjunction a
 ```
 
-Boolean monoid and semigroup under conjunction.
+Lattice monoid and semigroup under conjunction/infimum.
 
 ``` purescript
-All x <> All y == All (x && y)
-mempty :: All == All true
+Conjunction x <> Conjunction y == Conjunction (x && y)
+mempty :: Conjunction _ == Conjunction bottom
 ```
 
-#### `runAll`
+#### `runConjunction`
 
 ``` purescript
-runAll :: All -> Boolean
-```
-
-
-#### `eqAll`
-
-``` purescript
-instance eqAll :: Eq All
+runConjunction :: forall a. Conjunction a -> a
 ```
 
 
-#### `ordAll`
+#### `eqConjunction`
 
 ``` purescript
-instance ordAll :: Ord All
+instance eqConjunction :: (Eq a) => Eq (Conjunction a)
 ```
 
 
-#### `showAll`
+#### `ordConjunction`
 
 ``` purescript
-instance showAll :: Show All
+instance ordConjunction :: (Ord a) => Ord (Conjunction a)
 ```
 
 
-#### `semigroupAll`
+#### `functorConjunction`
 
 ``` purescript
-instance semigroupAll :: Semigroup All
+instance functorConjunction :: Functor Conjunction
 ```
 
 
-#### `monoidAll`
+#### `applyConjunction`
 
 ``` purescript
-instance monoidAll :: Monoid All
+instance applyConjunction :: Apply Conjunction
+```
+
+
+#### `applicativeConjunction`
+
+``` purescript
+instance applicativeConjunction :: Applicative Conjunction
+```
+
+
+#### `bindConjunction`
+
+``` purescript
+instance bindConjunction :: Bind Conjunction
+```
+
+
+#### `monadConjunction`
+
+``` purescript
+instance monadConjunction :: Monad Conjunction
+```
+
+
+#### `extendConjunction`
+
+``` purescript
+instance extendConjunction :: Extend Conjunction
+```
+
+
+#### `comonadConjunction`
+
+``` purescript
+instance comonadConjunction :: Comonad Conjunction
+```
+
+
+#### `showConjunction`
+
+``` purescript
+instance showConjunction :: (Show a) => Show (Conjunction a)
+```
+
+
+#### `semigroupConjunction`
+
+``` purescript
+instance semigroupConjunction :: (Lattice a) => Semigroup (Conjunction a)
+```
+
+
+#### `monoidConjunction`
+
+``` purescript
+instance monoidConjunction :: (Lattice a) => Monoid (Conjunction a)
 ```
 
 
 
-## Module Data.Monoid.Any
+## Module Data.Monoid.Disjunction
 
-#### `Any`
+#### `Disjunction`
 
 ``` purescript
-newtype Any
-  = Any Boolean
+newtype Disjunction a
+  = Disjunction a
 ```
 
-Boolean monoid and semigroup under disjunction.
+Lattice monoid and semigroup under disjunction/supremum.
 
 ``` purescript
-Any x <> Any y == Any (x || y)
-mempty :: Any == Any false
+Disjunction x <> Disjunction y == Disjunction (x || y)
+mempty :: Disjunction _ == Disjunction top
 ```
 
-#### `runAny`
+#### `runDisjunction`
 
 ``` purescript
-runAny :: Any -> Boolean
-```
-
-
-#### `eqAny`
-
-``` purescript
-instance eqAny :: Eq Any
+runDisjunction :: forall a. Disjunction a -> a
 ```
 
 
-#### `ordAny`
+#### `eqDisjunction`
 
 ``` purescript
-instance ordAny :: Ord Any
+instance eqDisjunction :: (Eq a) => Eq (Disjunction a)
 ```
 
 
-#### `showAny`
+#### `ordDisjunction`
 
 ``` purescript
-instance showAny :: Show Any
+instance ordDisjunction :: (Ord a) => Ord (Disjunction a)
 ```
 
 
-#### `semigroupAny`
+#### `functorDisjunction`
 
 ``` purescript
-instance semigroupAny :: Semigroup Any
+instance functorDisjunction :: Functor Disjunction
 ```
 
 
-#### `monoidAny`
+#### `applyDisjunction`
 
 ``` purescript
-instance monoidAny :: Monoid Any
+instance applyDisjunction :: Apply Disjunction
+```
+
+
+#### `applicativeDisjunction`
+
+``` purescript
+instance applicativeDisjunction :: Applicative Disjunction
+```
+
+
+#### `bindDisjunction`
+
+``` purescript
+instance bindDisjunction :: Bind Disjunction
+```
+
+
+#### `monadDisjunction`
+
+``` purescript
+instance monadDisjunction :: Monad Disjunction
+```
+
+
+#### `extendDisjunction`
+
+``` purescript
+instance extendDisjunction :: Extend Disjunction
+```
+
+
+#### `comonadDisjunction`
+
+``` purescript
+instance comonadDisjunction :: Comonad Disjunction
+```
+
+
+#### `showDisjunction`
+
+``` purescript
+instance showDisjunction :: (Show a) => Show (Disjunction a)
+```
+
+
+#### `semigroupDisjunction`
+
+``` purescript
+instance semigroupDisjunction :: (Lattice a) => Semigroup (Disjunction a)
+```
+
+
+#### `monoidDisjunction`
+
+``` purescript
+instance monoidDisjunction :: (Lattice a) => Monoid (Disjunction a)
 ```
 
 
@@ -448,7 +546,7 @@ Monoid returning the first (left-most) non-Nothing value.
 
 ``` purescript
 First (Just x) <> First (Just y) == First (Just x)
-First Nothing <> First (Just y) == First (Just x)
+First Nothing <> First (Just y) == First (Just y)
 First Nothing <> Nothing == First Nothing
 mempty :: First _ == First Nothing
 ```
