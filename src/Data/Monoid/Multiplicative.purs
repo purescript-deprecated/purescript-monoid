@@ -1,7 +1,7 @@
 module Data.Monoid.Multiplicative where
 
-import Control.Comonad
-import Control.Extend
+import Control.Comonad (Comonad)
+import Control.Extend (Extend)
 import Data.Monoid
 
 -- | Monoid and semigroup for semirings under multiplication.
