@@ -20,38 +20,10 @@ forall x. mempty <> x = x <> mempty = x
 `<>` is used to combine individual results, and `mempty` gives the result
 of folding an empty collection of elements.
 
-#### `monoidString`
-
-``` purescript
-instance monoidString :: Monoid String
-```
-
-
-#### `monoidArray`
-
-``` purescript
-instance monoidArray :: Monoid [a]
-```
-
-
 #### `monoidUnit`
 
 ``` purescript
 instance monoidUnit :: Monoid Unit
-```
-
-
-#### `monoidArr`
-
-``` purescript
-instance monoidArr :: (Monoid b) => Monoid (a -> b)
-```
-
-
-#### `monoidMaybe`
-
-``` purescript
-instance monoidMaybe :: (Semigroup a) => Monoid (Maybe a)
 ```
 
 

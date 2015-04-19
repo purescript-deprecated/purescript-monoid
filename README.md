@@ -20,10 +20,6 @@ bower install purescript-monoid
 - [Data.Monoid.Additive](docs/Data.Monoid.Additive.md)
 - [Data.Monoid.Multiplicative](docs/Data.Monoid.Multiplicative.md)
  
-### Monoids for `Maybe` values
-- [Data.Monoid.First](docs/Data.Monoid.First.md)
-- [Data.Monoid.Last](docs/Data.Monoid.Last.md)
-
 ### Monoids for lattices
 - [Data.Monoid.Inf](docs/Data.Monoid.Inf.md)
 - [Data.Monoid.Sup](docs/Data.Monoid.Sup.md)
