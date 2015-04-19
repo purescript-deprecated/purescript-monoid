@@ -1,11 +1,11 @@
 module Data.Monoid.First where
 
-import Control.Comonad
-import Control.Extend
-import Data.Maybe
+import Control.Comonad (Comonad)
+import Control.Extend (Extend, (<<=))
+import Data.Maybe (Maybe(..))
 import Data.Monoid
 
--- | Monoid returning the first (left-most) non-Nothing value.
+-- | Monoid returning the first (left-most) non-`Nothing` value.
 -- |
 -- | ``` purescript
 -- | First (Just x) <> First (Just y) == First (Just x)

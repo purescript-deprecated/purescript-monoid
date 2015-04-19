@@ -1,11 +1,11 @@
 module Data.Monoid.Last where
 
-import Control.Comonad
-import Control.Extend
-import Data.Maybe
+import Control.Comonad (Comonad)
+import Control.Extend (Extend, (<<=))
+import Data.Maybe (Maybe(..))
 import Data.Monoid
 
--- | Monoid returning the last (right-most) non-Nothing value.
+-- | Monoid returning the last (right-most) non-`Nothing` value.
 -- |
 -- | ``` purescript
 -- | Last (Just x) <> Last (Just y) == Last (Just y)
