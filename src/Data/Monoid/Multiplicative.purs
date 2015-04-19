@@ -2,6 +2,7 @@ module Data.Monoid.Multiplicative where
 
 import Control.Comonad (Comonad)
 import Control.Extend (Extend)
+import Data.Functor.Invariant (Invariant, invmap)
 import Data.Monoid
 
 -- | Monoid and semigroup for semirings under multiplication.
@@ -36,11 +37,14 @@ instance bindMultiplicative :: Bind Multiplicative where
 
 instance monadMultiplicative :: Monad Multiplicative
 
-instance extendAdditive :: Extend Multiplicative where
+instance extendMultiplicative :: Extend Multiplicative where
   (<<=) f x = Multiplicative (f x)
 
-instance comonadAdditive :: Comonad Multiplicative where
+instance comonadMultiplicative :: Comonad Multiplicative where
   extract = runMultiplicative
+
+instance invariantMultiplicative :: Invariant Multiplicative where
+  invmap f _ (Multiplicative x) = Multiplicative (f x)
 
 instance showMultiplicative :: (Show a) => Show (Multiplicative a) where
   show (Multiplicative a) = "Multiplicative (" ++ show a ++ ")"

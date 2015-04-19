@@ -2,6 +2,7 @@ module Data.Monoid.First where
 
 import Control.Comonad (Comonad)
 import Control.Extend (Extend, (<<=))
+import Data.Functor.Invariant (Invariant, invmap)
 import Data.Maybe (Maybe(..))
 import Data.Monoid
 
@@ -41,6 +42,9 @@ instance monadFirst :: Monad First
 
 instance extendFirst :: Extend First where
   (<<=) f x = f <<= x
+
+instance invariantFirst :: Invariant First where
+  invmap f _ (First x) = First (f <$> x)
 
 instance showFirst :: (Show a) => Show (First a) where
   show (First a) = "First (" ++ show a ++ ")"

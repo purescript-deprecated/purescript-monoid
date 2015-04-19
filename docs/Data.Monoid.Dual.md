@@ -86,6 +86,13 @@ instance comonadDual :: Comonad Dual
 ```
 
 
+#### `invariantDual`
+
+``` purescript
+instance invariantDual :: Invariant Dual
+```
+
+
 #### `showDual`
 
 ``` purescript

@@ -86,6 +86,13 @@ instance comonadAdditive :: Comonad Additive
 ```
 
 
+#### `invariantAdditive`
+
+``` purescript
+instance invariantAdditive :: Invariant Additive
+```
+
+
 #### `showAdditive`
 
 ``` purescript

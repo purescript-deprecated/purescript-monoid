@@ -16,6 +16,7 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-arrays": "~0.4.0"
+    "purescript-arrays": "~0.4.0",
+    "purescript-invariant": "~0.1.0"
   }
 }
