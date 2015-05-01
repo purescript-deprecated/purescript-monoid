@@ -27,5 +27,26 @@ instance monoidUnit :: Monoid Unit
 ```
 
 
+#### `monoidFn`
+
+``` purescript
+instance monoidFn :: (Monoid b) => Monoid (a -> b)
+```
+
+
+#### `monoidString`
+
+``` purescript
+instance monoidString :: Monoid String
+```
+
+
+#### `monoidArray`
+
+``` purescript
+instance monoidArray :: Monoid (Array a)
+```
+
+
 
 

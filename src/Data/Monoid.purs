@@ -16,5 +16,11 @@ class (Semigroup m) <= Monoid m where
 instance monoidUnit :: Monoid Unit where
   mempty = unit
 
-instance monoidArr :: (Monoid b) => Monoid (a -> b) where
+instance monoidFn :: (Monoid b) => Monoid (a -> b) where
   mempty = const mempty
+
+instance monoidString :: Monoid String where
+  mempty = ""
+
+instance monoidArray :: Monoid (Array a) where
+  mempty = []
