@@ -2,7 +2,7 @@ module Data.Monoid.Additive where
 
 import Control.Comonad (Comonad)
 import Control.Extend (Extend)
-import Data.Functor.Invariant (Invariant, invmap)
+import Data.Functor.Invariant (Invariant, imap)
 import Data.Monoid
 
 -- | Monoid and semigroup for semirings under addition.
@@ -17,23 +17,22 @@ runAdditive :: forall a. Additive a -> a
 runAdditive (Additive x) = x
 
 instance eqAdditive :: (Eq a) => Eq (Additive a) where
-  (==) (Additive x) (Additive y) = x == y
-  (/=) (Additive x) (Additive y) = x /= y
+  eq (Additive x) (Additive y) = x == y
 
 instance ordAdditive :: (Ord a) => Ord (Additive a) where
   compare (Additive x) (Additive y) = compare x y
 
 instance functorAdditive :: Functor Additive where
-  (<$>) f (Additive x) = Additive (f x)
+  map f (Additive x) = Additive (f x)
 
 instance applyAdditive :: Apply Additive where
-  (<*>) (Additive f) (Additive x) = Additive (f x)
+  apply (Additive f) (Additive x) = Additive (f x)
 
 instance applicativeAdditive :: Applicative Additive where
   pure = Additive
 
 instance bindAdditive :: Bind Additive where
-  (>>=) (Additive x) f = f x
+  bind (Additive x) f = f x
 
 instance monadAdditive :: Monad Additive
 
@@ -44,13 +43,13 @@ instance comonadAdditive :: Comonad Additive where
   extract = runAdditive
 
 instance invariantAdditive :: Invariant Additive where
-  invmap f _ (Additive x) = Additive (f x)
+  imap f _ (Additive x) = Additive (f x)
 
 instance showAdditive :: (Show a) => Show (Additive a) where
   show (Additive a) = "Additive (" ++ show a ++ ")"
 
 instance semigroupAdditive :: (Semiring a) => Semigroup (Additive a) where
-  (<>) (Additive a) (Additive b) = Additive (a + b)
+  append (Additive a) (Additive b) = Additive (a + b)
 
 instance monoidAdditive :: (Semiring a) => Monoid (Additive a) where
   mempty = Additive zero
