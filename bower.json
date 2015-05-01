@@ -17,6 +17,6 @@
   ],
   "dependencies": {
     "purescript-control": "~0.3.0",
-    "purescript-invariant": "~0.1.0"
+    "purescript-invariant": "~0.3.0"
   }
 }
