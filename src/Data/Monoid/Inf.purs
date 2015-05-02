@@ -52,4 +52,4 @@ instance semigroupInf :: (Lattice a) => Semigroup (Inf a) where
   append (Inf a) (Inf b) = Inf (a && b)
 
 instance monoidInf :: (BoundedLattice a) => Monoid (Inf a) where
-  mempty = Inf bottom
+  mempty = Inf top
