@@ -52,4 +52,4 @@ instance semigroupSup :: (Lattice a) => Semigroup (Sup a) where
   append (Sup a) (Sup b) = Sup (a || b)
 
 instance monoidSup :: (BoundedLattice a) => Monoid (Sup a) where
-  mempty = Sup top
+  mempty = Sup bottom
