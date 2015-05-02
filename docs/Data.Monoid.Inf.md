@@ -13,7 +13,7 @@ Lattice monoid and semigroup under conjunction/infimum.
 
 ``` purescript
 Inf x <> Inf y == Inf (x && y)
-mempty :: Inf _ == Inf bottom
+mempty :: Inf _ == Inf top
 ```
 
 #### `runInf`
