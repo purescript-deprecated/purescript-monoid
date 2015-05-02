@@ -13,7 +13,7 @@ Lattice monoid and semigroup under disjunction/supremum.
 
 ``` purescript
 Sup x <> Sup y == Sup (x || y)
-mempty :: Sup _ == Sup top
+mempty :: Sup _ == Sup bottom
 ```
 
 #### `runSup`

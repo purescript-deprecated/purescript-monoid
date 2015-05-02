@@ -8,7 +8,7 @@ import Data.Monoid
 -- |
 -- | ``` purescript
 -- | Inf x <> Inf y == Inf (x && y)
--- | mempty :: Inf _ == Inf bottom
+-- | mempty :: Inf _ == Inf top
 -- | ```
 newtype Inf a = Inf a
 

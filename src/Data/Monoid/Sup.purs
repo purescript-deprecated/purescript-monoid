@@ -8,7 +8,7 @@ import Data.Monoid
 -- |
 -- | ``` purescript
 -- | Sup x <> Sup y == Sup (x || y)
--- | mempty :: Sup _ == Sup top
+-- | mempty :: Sup _ == Sup bottom
 -- | ```
 newtype Sup a = Sup a
 
