@@ -1,5 +1,3 @@
-# Module Documentation
-
 ## Module Data.Monoid.Multiplicative
 
 #### `Multiplicative`
@@ -7,6 +5,23 @@
 ``` purescript
 newtype Multiplicative a
   = Multiplicative a
+```
+
+##### Instances
+``` purescript
+instance eqMultiplicative :: (Eq a) => Eq (Multiplicative a)
+instance ordMultiplicative :: (Ord a) => Ord (Multiplicative a)
+instance functorMultiplicative :: Functor Multiplicative
+instance applyMultiplicative :: Apply Multiplicative
+instance applicativeMultiplicative :: Applicative Multiplicative
+instance bindMultiplicative :: Bind Multiplicative
+instance monadMultiplicative :: Monad Multiplicative
+instance extendMultiplicative :: Extend Multiplicative
+instance comonadMultiplicative :: Comonad Multiplicative
+instance invariantMultiplicative :: Invariant Multiplicative
+instance showMultiplicative :: (Show a) => Show (Multiplicative a)
+instance semigroupMultiplicative :: (Semiring a) => Semigroup (Multiplicative a)
+instance monoidMultiplicative :: (Semiring a) => Monoid (Multiplicative a)
 ```
 
 Monoid and semigroup for semirings under multiplication.
@@ -21,98 +36,5 @@ mempty :: Multiplicative _ == Multiplicative one
 ``` purescript
 runMultiplicative :: forall a. Multiplicative a -> a
 ```
-
-
-#### `eqMultiplicative`
-
-``` purescript
-instance eqMultiplicative :: (Eq a) => Eq (Multiplicative a)
-```
-
-
-#### `ordMultiplicative`
-
-``` purescript
-instance ordMultiplicative :: (Ord a) => Ord (Multiplicative a)
-```
-
-
-#### `functorMultiplicative`
-
-``` purescript
-instance functorMultiplicative :: Functor Multiplicative
-```
-
-
-#### `applyMultiplicative`
-
-``` purescript
-instance applyMultiplicative :: Apply Multiplicative
-```
-
-
-#### `applicativeMultiplicative`
-
-``` purescript
-instance applicativeMultiplicative :: Applicative Multiplicative
-```
-
-
-#### `bindMultiplicative`
-
-``` purescript
-instance bindMultiplicative :: Bind Multiplicative
-```
-
-
-#### `monadMultiplicative`
-
-``` purescript
-instance monadMultiplicative :: Monad Multiplicative
-```
-
-
-#### `extendMultiplicative`
-
-``` purescript
-instance extendMultiplicative :: Extend Multiplicative
-```
-
-
-#### `comonadMultiplicative`
-
-``` purescript
-instance comonadMultiplicative :: Comonad Multiplicative
-```
-
-
-#### `invariantMultiplicative`
-
-``` purescript
-instance invariantMultiplicative :: Invariant Multiplicative
-```
-
-
-#### `showMultiplicative`
-
-``` purescript
-instance showMultiplicative :: (Show a) => Show (Multiplicative a)
-```
-
-
-#### `semigroupMultiplicative`
-
-``` purescript
-instance semigroupMultiplicative :: (Semiring a) => Semigroup (Multiplicative a)
-```
-
-
-#### `monoidMultiplicative`
-
-``` purescript
-instance monoidMultiplicative :: (Semiring a) => Monoid (Multiplicative a)
-```
-
-
 
 

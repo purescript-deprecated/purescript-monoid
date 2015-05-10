@@ -1,5 +1,3 @@
-# Module Documentation
-
 ## Module Data.Monoid.Endo
 
 #### `Endo`
@@ -7,6 +5,13 @@
 ``` purescript
 newtype Endo a
   = Endo (a -> a)
+```
+
+##### Instances
+``` purescript
+instance invariantEndo :: Invariant Endo
+instance semigroupEndo :: Semigroup (Endo a)
+instance monoidEndo :: Monoid (Endo a)
 ```
 
 Monoid of endomorphisms under composition.
@@ -22,28 +27,5 @@ mempty :: Endo _ == Endo id
 ``` purescript
 runEndo :: forall a. Endo a -> a -> a
 ```
-
-
-#### `invariantEndo`
-
-``` purescript
-instance invariantEndo :: Invariant Endo
-```
-
-
-#### `semigroupEndo`
-
-``` purescript
-instance semigroupEndo :: Semigroup (Endo a)
-```
-
-
-#### `monoidEndo`
-
-``` purescript
-instance monoidEndo :: Monoid (Endo a)
-```
-
-
 
 

@@ -1,5 +1,3 @@
-# Module Documentation
-
 ## Module Data.Monoid.Dual
 
 #### `Dual`
@@ -7,6 +5,23 @@
 ``` purescript
 newtype Dual a
   = Dual a
+```
+
+##### Instances
+``` purescript
+instance eqDual :: (Eq a) => Eq (Dual a)
+instance ordDual :: (Ord a) => Ord (Dual a)
+instance functorDual :: Functor Dual
+instance applyDual :: Apply Dual
+instance applicativeDual :: Applicative Dual
+instance bindDual :: Bind Dual
+instance monadDual :: Monad Dual
+instance extendDual :: Extend Dual
+instance comonadDual :: Comonad Dual
+instance invariantDual :: Invariant Dual
+instance showDual :: (Show a) => Show (Dual a)
+instance semigroupDual :: (Semigroup a) => Semigroup (Dual a)
+instance monoidDual :: (Monoid a) => Monoid (Dual a)
 ```
 
 The dual of a monoid.
@@ -21,98 +36,5 @@ mempty :: Dual _ == Dual mempty
 ``` purescript
 runDual :: forall a. Dual a -> a
 ```
-
-
-#### `eqDual`
-
-``` purescript
-instance eqDual :: (Eq a) => Eq (Dual a)
-```
-
-
-#### `ordDual`
-
-``` purescript
-instance ordDual :: (Ord a) => Ord (Dual a)
-```
-
-
-#### `functorDual`
-
-``` purescript
-instance functorDual :: Functor Dual
-```
-
-
-#### `applyDual`
-
-``` purescript
-instance applyDual :: Apply Dual
-```
-
-
-#### `applicativeDual`
-
-``` purescript
-instance applicativeDual :: Applicative Dual
-```
-
-
-#### `bindDual`
-
-``` purescript
-instance bindDual :: Bind Dual
-```
-
-
-#### `monadDual`
-
-``` purescript
-instance monadDual :: Monad Dual
-```
-
-
-#### `extendDual`
-
-``` purescript
-instance extendDual :: Extend Dual
-```
-
-
-#### `comonadDual`
-
-``` purescript
-instance comonadDual :: Comonad Dual
-```
-
-
-#### `invariantDual`
-
-``` purescript
-instance invariantDual :: Invariant Dual
-```
-
-
-#### `showDual`
-
-``` purescript
-instance showDual :: (Show a) => Show (Dual a)
-```
-
-
-#### `semigroupDual`
-
-``` purescript
-instance semigroupDual :: (Semigroup a) => Semigroup (Dual a)
-```
-
-
-#### `monoidDual`
-
-``` purescript
-instance monoidDual :: (Monoid a) => Monoid (Dual a)
-```
-
-
 
 

@@ -1,5 +1,3 @@
-# Module Documentation
-
 ## Module Data.Monoid.Additive
 
 #### `Additive`
@@ -7,6 +5,23 @@
 ``` purescript
 newtype Additive a
   = Additive a
+```
+
+##### Instances
+``` purescript
+instance eqAdditive :: (Eq a) => Eq (Additive a)
+instance ordAdditive :: (Ord a) => Ord (Additive a)
+instance functorAdditive :: Functor Additive
+instance applyAdditive :: Apply Additive
+instance applicativeAdditive :: Applicative Additive
+instance bindAdditive :: Bind Additive
+instance monadAdditive :: Monad Additive
+instance extendAdditive :: Extend Additive
+instance comonadAdditive :: Comonad Additive
+instance invariantAdditive :: Invariant Additive
+instance showAdditive :: (Show a) => Show (Additive a)
+instance semigroupAdditive :: (Semiring a) => Semigroup (Additive a)
+instance monoidAdditive :: (Semiring a) => Monoid (Additive a)
 ```
 
 Monoid and semigroup for semirings under addition.
@@ -21,98 +36,5 @@ mempty :: Additive _ == Additive zero
 ``` purescript
 runAdditive :: forall a. Additive a -> a
 ```
-
-
-#### `eqAdditive`
-
-``` purescript
-instance eqAdditive :: (Eq a) => Eq (Additive a)
-```
-
-
-#### `ordAdditive`
-
-``` purescript
-instance ordAdditive :: (Ord a) => Ord (Additive a)
-```
-
-
-#### `functorAdditive`
-
-``` purescript
-instance functorAdditive :: Functor Additive
-```
-
-
-#### `applyAdditive`
-
-``` purescript
-instance applyAdditive :: Apply Additive
-```
-
-
-#### `applicativeAdditive`
-
-``` purescript
-instance applicativeAdditive :: Applicative Additive
-```
-
-
-#### `bindAdditive`
-
-``` purescript
-instance bindAdditive :: Bind Additive
-```
-
-
-#### `monadAdditive`
-
-``` purescript
-instance monadAdditive :: Monad Additive
-```
-
-
-#### `extendAdditive`
-
-``` purescript
-instance extendAdditive :: Extend Additive
-```
-
-
-#### `comonadAdditive`
-
-``` purescript
-instance comonadAdditive :: Comonad Additive
-```
-
-
-#### `invariantAdditive`
-
-``` purescript
-instance invariantAdditive :: Invariant Additive
-```
-
-
-#### `showAdditive`
-
-``` purescript
-instance showAdditive :: (Show a) => Show (Additive a)
-```
-
-
-#### `semigroupAdditive`
-
-``` purescript
-instance semigroupAdditive :: (Semiring a) => Semigroup (Additive a)
-```
-
-
-#### `monoidAdditive`
-
-``` purescript
-instance monoidAdditive :: (Semiring a) => Monoid (Additive a)
-```
-
-
 
 
