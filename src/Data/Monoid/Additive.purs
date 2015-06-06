@@ -1,5 +1,7 @@
 module Data.Monoid.Additive where
 
+import Prelude
+
 import Control.Comonad (Comonad)
 import Control.Extend (Extend)
 import Data.Functor.Invariant (Invariant, imap)

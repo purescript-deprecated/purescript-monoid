@@ -1,5 +1,7 @@
 module Data.Monoid where
 
+import Prelude
+
 -- | A `Monoid` is a `Semigroup` with a value `mempty`, which is both a
 -- | left and right unit for the associative operation `<>`:
 -- |
