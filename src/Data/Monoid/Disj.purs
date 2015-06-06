@@ -10,7 +10,7 @@ import Data.Monoid
 -- |
 -- | ``` purescript
 -- | Disj x <> Disj y == Disj (x || y)
--- | mempty :: Disj _ == Disj top
+-- | mempty :: Disj _ == Disj bottom
 -- | ```
 newtype Disj a = Disj a
 
@@ -54,4 +54,4 @@ instance semigroupDisj :: (BooleanAlgebra a) => Semigroup (Disj a) where
   append (Disj a) (Disj b) = Disj (disj a b)
 
 instance monoidDisj :: (BooleanAlgebra a) => Monoid (Disj a) where
-  mempty = Disj top
+  mempty = Disj bottom

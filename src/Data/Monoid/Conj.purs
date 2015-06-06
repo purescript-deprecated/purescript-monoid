@@ -10,7 +10,7 @@ import Data.Monoid
 -- |
 -- | ``` purescript
 -- | Conj x <> Conj y == Conj (x && y)
--- | mempty :: Conj _ == Conj bottom
+-- | mempty :: Conj _ == Conj top
 -- | ```
 newtype Conj a = Conj a
 
@@ -54,4 +54,4 @@ instance semigroupConj :: (BooleanAlgebra a) => Semigroup (Conj a) where
   append (Conj a) (Conj b) = Conj (conj a b)
 
 instance monoidConj :: (BooleanAlgebra a) => Monoid (Conj a) where
-  mempty = Conj bottom
+  mempty = Conj top
