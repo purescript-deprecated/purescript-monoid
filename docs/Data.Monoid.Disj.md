@@ -7,6 +7,13 @@ newtype Disj a
   = Disj a
 ```
 
+Monoid under disjuntion.
+
+``` purescript
+Disj x <> Disj y == Disj (x || y)
+mempty :: Disj _ == Disj bottom
+```
+
 ##### Instances
 ``` purescript
 instance eqDisj :: (Eq a) => Eq (Disj a)
@@ -22,13 +29,6 @@ instance comonadDisj :: Comonad Disj
 instance showDisj :: (Show a) => Show (Disj a)
 instance semigroupDisj :: (BooleanAlgebra a) => Semigroup (Disj a)
 instance monoidDisj :: (BooleanAlgebra a) => Monoid (Disj a)
-```
-
-Monoid under disjuntion.
-
-``` purescript
-Disj x <> Disj y == Disj (x || y)
-mempty :: Disj _ == Disj top
 ```
 
 #### `runDisj`

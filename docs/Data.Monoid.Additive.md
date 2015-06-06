@@ -7,6 +7,13 @@ newtype Additive a
   = Additive a
 ```
 
+Monoid and semigroup for semirings under addition.
+
+``` purescript
+Additive x <> Additive y == Additive (x + y)
+mempty :: Additive _ == Additive zero
+```
+
 ##### Instances
 ``` purescript
 instance eqAdditive :: (Eq a) => Eq (Additive a)
@@ -22,13 +29,6 @@ instance invariantAdditive :: Invariant Additive
 instance showAdditive :: (Show a) => Show (Additive a)
 instance semigroupAdditive :: (Semiring a) => Semigroup (Additive a)
 instance monoidAdditive :: (Semiring a) => Monoid (Additive a)
-```
-
-Monoid and semigroup for semirings under addition.
-
-``` purescript
-Additive x <> Additive y == Additive (x + y)
-mempty :: Additive _ == Additive zero
 ```
 
 #### `runAdditive`

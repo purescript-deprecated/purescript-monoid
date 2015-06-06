@@ -7,6 +7,13 @@ newtype Dual a
   = Dual a
 ```
 
+The dual of a monoid.
+
+``` purescript
+Dual x <> Dual y == Dual (y <> x)
+mempty :: Dual _ == Dual mempty
+```
+
 ##### Instances
 ``` purescript
 instance eqDual :: (Eq a) => Eq (Dual a)
@@ -22,13 +29,6 @@ instance invariantDual :: Invariant Dual
 instance showDual :: (Show a) => Show (Dual a)
 instance semigroupDual :: (Semigroup a) => Semigroup (Dual a)
 instance monoidDual :: (Monoid a) => Monoid (Dual a)
-```
-
-The dual of a monoid.
-
-``` purescript
-Dual x <> Dual y == Dual (y <> x)
-mempty :: Dual _ == Dual mempty
 ```
 
 #### `runDual`
