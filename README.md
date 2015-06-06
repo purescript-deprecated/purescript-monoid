@@ -20,6 +20,6 @@ bower install purescript-monoid
 - [Data.Monoid.Additive](docs/Data.Monoid.Additive.md)
 - [Data.Monoid.Multiplicative](docs/Data.Monoid.Multiplicative.md)
  
-### Monoids for lattices
-- [Data.Monoid.Inf](docs/Data.Monoid.Inf.md)
-- [Data.Monoid.Sup](docs/Data.Monoid.Sup.md)
+### Monoids for boolean algebras
+- [Data.Monoid.Conj](docs/Data.Monoid.Conj.md)
+- [Data.Monoid.Disj](docs/Data.Monoid.Disj.md)

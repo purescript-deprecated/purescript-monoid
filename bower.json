@@ -21,7 +21,7 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-control": "~0.3.0",
-    "purescript-invariant": "~0.3.0"
+    "purescript-control": "^0.3.0",
+    "purescript-invariant": "^0.3.0"
   }
 }

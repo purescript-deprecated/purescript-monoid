@@ -6,7 +6,7 @@ import Control.Comonad (Comonad)
 import Control.Extend (Extend)
 import Data.Monoid
 
--- | Semigroup under disjuntion.
+-- | Monoid under disjuntion.
 -- |
 -- | ``` purescript
 -- | Disj x <> Disj y == Disj (x || y)
