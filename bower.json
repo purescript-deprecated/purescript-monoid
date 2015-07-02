@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/purescript/purescript-bifunctors.git"
+    "url": "git://github.com/purescript/purescript-monoid.git"
   },
   "ignore": [
     "**/.*",
@@ -17,7 +17,6 @@
     "output",
     "test",
     "bower.json",
-    "gulpfile.js",
     "package.json"
   ],
   "dependencies": {
