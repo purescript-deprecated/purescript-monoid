@@ -55,3 +55,9 @@ instance semigroupDisj :: (BooleanAlgebra a) => Semigroup (Disj a) where
 
 instance monoidDisj :: (BooleanAlgebra a) => Monoid (Disj a) where
   mempty = Disj bottom
+
+instance semiringDisj :: (BooleanAlgebra a) => Semiring (Disj a) where
+  zero = Disj bottom
+  one = Disj top
+  add (Disj a) (Disj b) = Disj (disj a b)
+  mul (Disj a) (Disj b) = Disj (conj a b)

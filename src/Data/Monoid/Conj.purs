@@ -55,3 +55,9 @@ instance semigroupConj :: (BooleanAlgebra a) => Semigroup (Conj a) where
 
 instance monoidConj :: (BooleanAlgebra a) => Monoid (Conj a) where
   mempty = Conj top
+
+instance semiringConj :: (BooleanAlgebra a) => Semiring (Conj a) where
+  zero = Conj top
+  one = Conj bottom
+  add (Conj a) (Conj b) = Conj (conj a b)
+  mul (Conj a) (Conj b) = Conj (disj a b)

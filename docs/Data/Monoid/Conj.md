@@ -29,6 +29,7 @@ instance comonadConj :: Comonad Conj
 instance showConj :: (Show a) => Show (Conj a)
 instance semigroupConj :: (BooleanAlgebra a) => Semigroup (Conj a)
 instance monoidConj :: (BooleanAlgebra a) => Monoid (Conj a)
+instance semiringConj :: (BooleanAlgebra a) => Semiring (Conj a)
 ```
 
 #### `runConj`
