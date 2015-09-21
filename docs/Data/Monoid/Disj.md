@@ -29,6 +29,7 @@ instance comonadDisj :: Comonad Disj
 instance showDisj :: (Show a) => Show (Disj a)
 instance semigroupDisj :: (BooleanAlgebra a) => Semigroup (Disj a)
 instance monoidDisj :: (BooleanAlgebra a) => Monoid (Disj a)
+instance semiringDisj :: (BooleanAlgebra a) => Semiring (Disj a)
 ```
 
 #### `runDisj`
