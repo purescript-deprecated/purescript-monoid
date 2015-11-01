@@ -4,8 +4,9 @@ import Prelude
 
 import Control.Comonad (Comonad)
 import Control.Extend (Extend)
-import Data.Functor.Invariant (Invariant, imap)
-import Data.Monoid
+
+import Data.Functor.Invariant (Invariant)
+import Data.Monoid (Monoid)
 
 -- | Monoid and semigroup for semirings under multiplication.
 -- |
