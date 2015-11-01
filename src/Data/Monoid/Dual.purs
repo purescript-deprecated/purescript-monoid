@@ -4,8 +4,9 @@ import Prelude
 
 import Control.Comonad (Comonad)
 import Control.Extend (Extend)
-import Data.Functor.Invariant (Invariant, imap)
-import Data.Monoid
+
+import Data.Functor.Invariant (Invariant)
+import Data.Monoid (Monoid, mempty)
 
 -- | The dual of a monoid.
 -- |
@@ -20,7 +21,7 @@ runDual (Dual x) = x
 
 instance eqDual :: (Eq a) => Eq (Dual a) where
   eq (Dual x) (Dual y) = x == y
-  
+
 instance ordDual :: (Ord a) => Ord (Dual a) where
   compare (Dual x) (Dual y) = compare x y
 

@@ -4,7 +4,8 @@ import Prelude
 
 import Control.Comonad (Comonad)
 import Control.Extend (Extend)
-import Data.Monoid
+
+import Data.Monoid (Monoid)
 
 -- | Monoid under disjuntion.
 -- |

@@ -2,8 +2,8 @@ module Data.Monoid.Endo where
 
 import Prelude
 
-import Data.Functor.Invariant (Invariant, imap)
-import Data.Monoid
+import Data.Functor.Invariant (Invariant)
+import Data.Monoid (Monoid)
 
 -- | Monoid of endomorphisms under composition.
 -- |
