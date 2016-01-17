@@ -1,12 +1,22 @@
 module Data.Monoid.Multiplicative where
 
-import Prelude
+import Control.Applicative (class Applicative)
+import Control.Apply (class Apply)
+import Control.Bind (class Bind)
+import Control.Comonad (class Comonad)
+import Control.Extend (class Extend)
+import Control.Monad (class Monad)
 
-import Control.Comonad (Comonad)
-import Control.Extend (Extend)
-
-import Data.Functor.Invariant (Invariant)
-import Data.Monoid (Monoid)
+import Data.Bounded (class Bounded, top, bottom)
+import Data.BoundedOrd (class BoundedOrd)
+import Data.Eq (class Eq, (==))
+import Data.Functor (class Functor)
+import Data.Functor.Invariant (class Invariant)
+import Data.Monoid (class Monoid)
+import Data.Ord (class Ord, compare)
+import Data.Semigroup (class Semigroup, (<>))
+import Data.Semiring (class Semiring, (*), one)
+import Data.Show (class Show, show)
 
 -- | Monoid and semigroup for semirings under multiplication.
 -- |
@@ -25,8 +35,17 @@ instance eqMultiplicative :: (Eq a) => Eq (Multiplicative a) where
 instance ordMultiplicative :: (Ord a) => Ord (Multiplicative a) where
   compare (Multiplicative x) (Multiplicative y) = compare x y
 
+instance boundedMultiplicative :: Bounded a => Bounded (Multiplicative a) where
+  top = Multiplicative top
+  bottom = Multiplicative bottom
+
+instance boundedOrdMultiplicative :: BoundedOrd a => BoundedOrd (Multiplicative a)
+
 instance functorMultiplicative :: Functor Multiplicative where
   map f (Multiplicative x) = Multiplicative (f x)
+
+instance invariantMultiplicative :: Invariant Multiplicative where
+  imap f _ (Multiplicative x) = Multiplicative (f x)
 
 instance applyMultiplicative :: Apply Multiplicative where
   apply (Multiplicative f) (Multiplicative x) = Multiplicative (f x)
@@ -45,11 +64,8 @@ instance extendMultiplicative :: Extend Multiplicative where
 instance comonadMultiplicative :: Comonad Multiplicative where
   extract = runMultiplicative
 
-instance invariantMultiplicative :: Invariant Multiplicative where
-  imap f _ (Multiplicative x) = Multiplicative (f x)
-
 instance showMultiplicative :: (Show a) => Show (Multiplicative a) where
-  show (Multiplicative a) = "Multiplicative (" ++ show a ++ ")"
+  show (Multiplicative a) = "(Multiplicative " <> show a <> ")"
 
 instance semigroupMultiplicative :: (Semiring a) => Semigroup (Multiplicative a) where
   append (Multiplicative a) (Multiplicative b) = Multiplicative (a * b)

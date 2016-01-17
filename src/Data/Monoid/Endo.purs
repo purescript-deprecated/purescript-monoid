@@ -1,9 +1,9 @@
 module Data.Monoid.Endo where
 
-import Prelude
-
-import Data.Functor.Invariant (Invariant)
-import Data.Monoid (Monoid)
+import Data.Function (id, (<<<))
+import Data.Functor.Invariant (class Invariant)
+import Data.Monoid (class Monoid)
+import Data.Semigroup (class Semigroup)
 
 -- | Monoid of endomorphisms under composition.
 -- |

@@ -2,9 +2,6 @@
   "name": "purescript-monoid",
   "homepage": "https://github.com/purescript/purescript-monoid",
   "description": "Monoid algebraic structure",
-  "keywords": [
-    "purescript"
-  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -20,7 +17,7 @@
     "package.json"
   ],
   "dependencies": {
-    "purescript-control": "^0.3.0",
-    "purescript-invariant": "^0.3.0"
+    "purescript-control": "^1.0.0-rc.1",
+    "purescript-invariant": "^1.0.0-rc.1"
   }
 }

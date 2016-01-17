@@ -1,11 +1,22 @@
 module Data.Monoid.Disj where
 
-import Prelude
+import Control.Applicative (class Applicative)
+import Control.Apply (class Apply)
+import Control.Bind (class Bind)
+import Control.Comonad (class Comonad)
+import Control.Extend (class Extend)
+import Control.Monad (class Monad)
 
-import Control.Comonad (Comonad)
-import Control.Extend (Extend)
-
-import Data.Monoid (Monoid)
+import Data.BooleanAlgebra (class BooleanAlgebra, conj, disj)
+import Data.Bounded (class Bounded, top, bottom)
+import Data.BoundedOrd (class BoundedOrd)
+import Data.Eq (class Eq, (==))
+import Data.Functor (class Functor)
+import Data.Monoid (class Monoid)
+import Data.Ord (class Ord, compare)
+import Data.Semigroup (class Semigroup, (<>))
+import Data.Semiring (class Semiring)
+import Data.Show (class Show, show)
 
 -- | Monoid under disjuntion.
 -- |
@@ -18,15 +29,17 @@ newtype Disj a = Disj a
 runDisj :: forall a. Disj a -> a
 runDisj (Disj x) = x
 
-instance eqDisj :: (Eq a) => Eq (Disj a) where
+instance eqDisj :: Eq a => Eq (Disj a) where
   eq (Disj x) (Disj y) = x == y
 
-instance ordDisj :: (Ord a) => Ord (Disj a) where
+instance ordDisj :: Ord a => Ord (Disj a) where
   compare (Disj x) (Disj y) = compare x y
 
-instance boundedDisj :: (Bounded a) => Bounded (Disj a) where
+instance boundedDisj :: Bounded a => Bounded (Disj a) where
   top = Disj top
   bottom = Disj bottom
+
+instance boundedOrdDisj :: BoundedOrd a => BoundedOrd (Disj a)
 
 instance functorDisj :: Functor Disj where
   map f (Disj x) = Disj (f x)
@@ -48,16 +61,16 @@ instance extendDisj :: Extend Disj where
 instance comonadDisj :: Comonad Disj where
   extract = runDisj
 
-instance showDisj :: (Show a) => Show (Disj a) where
-  show (Disj a) = "Disj (" ++ show a ++ ")"
+instance showDisj :: Show a => Show (Disj a) where
+  show (Disj a) = "(Disj " <> show a <> ")"
 
-instance semigroupDisj :: (BooleanAlgebra a) => Semigroup (Disj a) where
+instance semigroupDisj :: BooleanAlgebra a => Semigroup (Disj a) where
   append (Disj a) (Disj b) = Disj (disj a b)
 
-instance monoidDisj :: (BooleanAlgebra a) => Monoid (Disj a) where
+instance monoidDisj :: BooleanAlgebra a => Monoid (Disj a) where
   mempty = Disj bottom
 
-instance semiringDisj :: (BooleanAlgebra a) => Semiring (Disj a) where
+instance semiringDisj :: BooleanAlgebra a => Semiring (Disj a) where
   zero = Disj bottom
   one = Disj top
   add (Disj a) (Disj b) = Disj (disj a b)
