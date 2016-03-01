@@ -1,11 +1,23 @@
 module Data.Monoid.Conj where
 
-import Prelude
+import Control.Applicative (class Applicative)
+import Control.Apply (class Apply)
+import Control.Bind (class Bind)
+import Control.Comonad (class Comonad)
+import Control.Extend (class Extend)
+import Control.Monad (class Monad)
 
-import Control.Comonad (Comonad)
-import Control.Extend (Extend)
-
-import Data.Monoid (Monoid)
+import Data.BooleanAlgebra (class BooleanAlgebra, conj, disj)
+import Data.Bounded (class Bounded, top, bottom)
+import Data.BoundedOrd (class BoundedOrd)
+import Data.Eq (class Eq, (==))
+import Data.Functor (class Functor)
+import Data.Functor.Invariant (class Invariant)
+import Data.Monoid (class Monoid)
+import Data.Ord (class Ord, compare)
+import Data.Semigroup (class Semigroup, (<>))
+import Data.Semiring (class Semiring)
+import Data.Show (class Show, show)
 
 -- | Monoid under conjuntion.
 -- |
@@ -18,18 +30,23 @@ newtype Conj a = Conj a
 runConj :: forall a. Conj a -> a
 runConj (Conj x) = x
 
-instance eqConj :: (Eq a) => Eq (Conj a) where
+instance eqConj :: Eq a => Eq (Conj a) where
   eq (Conj x) (Conj y) = x == y
 
-instance ordConj :: (Ord a) => Ord (Conj a) where
+instance ordConj :: Ord a => Ord (Conj a) where
   compare (Conj x) (Conj y) = compare x y
 
-instance boundedConj :: (Bounded a) => Bounded (Conj a) where
+instance boundedConj :: Bounded a => Bounded (Conj a) where
   top = Conj top
   bottom = Conj bottom
 
+instance boundedOrdConj :: BoundedOrd a => BoundedOrd (Conj a)
+
 instance functorConj :: Functor Conj where
   map f (Conj x) = Conj (f x)
+
+instance invariantConj :: Invariant Conj where
+  imap f _ (Conj x) = Conj (f x)
 
 instance applyConj :: Apply Conj where
   apply (Conj f) (Conj x) = Conj (f x)
@@ -49,15 +66,15 @@ instance comonadConj :: Comonad Conj where
   extract = runConj
 
 instance showConj :: (Show a) => Show (Conj a) where
-  show (Conj a) = "Conj (" ++ show a ++ ")"
+  show (Conj a) = "(Conj " <> show a <> ")"
 
-instance semigroupConj :: (BooleanAlgebra a) => Semigroup (Conj a) where
+instance semigroupConj :: BooleanAlgebra a => Semigroup (Conj a) where
   append (Conj a) (Conj b) = Conj (conj a b)
 
-instance monoidConj :: (BooleanAlgebra a) => Monoid (Conj a) where
+instance monoidConj :: BooleanAlgebra a => Monoid (Conj a) where
   mempty = Conj top
 
-instance semiringConj :: (BooleanAlgebra a) => Semiring (Conj a) where
+instance semiringConj :: BooleanAlgebra a => Semiring (Conj a) where
   zero = Conj top
   one = Conj bottom
   add (Conj a) (Conj b) = Conj (conj a b)

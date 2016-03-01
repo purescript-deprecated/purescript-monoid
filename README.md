@@ -12,16 +12,6 @@ Monoid algebraic structure.
 bower install purescript-monoid
 ```
 
-## Module documentation
+## Documentation
 
-- [Data.Monoid](docs/Data/Monoid.md)
-- [Data.Monoid.Dual](docs/Data/Monoid/Dual.md)
-- [Data.Monoid.Endo](docs/Data/Monoid/Endo.md)
-
-### Monoids for semirings
-- [Data.Monoid.Additive](docs/Data/Monoid/Additive.md)
-- [Data.Monoid.Multiplicative](docs/Data/Monoid/Multiplicative.md)
- 
-### Monoids for boolean algebras
-- [Data.Monoid.Conj](docs/Data/Monoid/Conj.md)
-- [Data.Monoid.Disj](docs/Data/Monoid/Disj.md)
+Module documentation is [published on Pursuit](http://pursuit.purescript.org/packages/purescript-monoid).
