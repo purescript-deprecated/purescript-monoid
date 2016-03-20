@@ -8,7 +8,6 @@ import Control.Extend (class Extend)
 import Control.Monad (class Monad)
 
 import Data.Bounded (class Bounded, top, bottom)
-import Data.BoundedOrd (class BoundedOrd)
 import Data.Eq (class Eq, (==))
 import Data.Functor (class Functor)
 import Data.Functor.Invariant (class Invariant)
@@ -37,8 +36,6 @@ instance ordDual :: Ord a => Ord (Dual a) where
 instance boundedDual :: Bounded a => Bounded (Dual a) where
   top = Dual top
   bottom = Dual bottom
-
-instance boundedOrdDual :: BoundedOrd a => BoundedOrd (Dual a)
 
 instance functorDual :: Functor Dual where
   map f (Dual x) = Dual (f x)

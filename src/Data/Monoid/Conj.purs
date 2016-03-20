@@ -7,9 +7,8 @@ import Control.Comonad (class Comonad)
 import Control.Extend (class Extend)
 import Control.Monad (class Monad)
 
-import Data.BooleanAlgebra (class BooleanAlgebra, conj, disj)
+import Data.HeytingAlgebra (class HeytingAlgebra, conj, disj, ff, tt)
 import Data.Bounded (class Bounded, top, bottom)
-import Data.BoundedOrd (class BoundedOrd)
 import Data.Eq (class Eq, (==))
 import Data.Functor (class Functor)
 import Data.Functor.Invariant (class Invariant)
@@ -40,8 +39,6 @@ instance boundedConj :: Bounded a => Bounded (Conj a) where
   top = Conj top
   bottom = Conj bottom
 
-instance boundedOrdConj :: BoundedOrd a => BoundedOrd (Conj a)
-
 instance functorConj :: Functor Conj where
   map f (Conj x) = Conj (f x)
 
@@ -68,14 +65,14 @@ instance comonadConj :: Comonad Conj where
 instance showConj :: (Show a) => Show (Conj a) where
   show (Conj a) = "(Conj " <> show a <> ")"
 
-instance semigroupConj :: BooleanAlgebra a => Semigroup (Conj a) where
+instance semigroupConj :: HeytingAlgebra a => Semigroup (Conj a) where
   append (Conj a) (Conj b) = Conj (conj a b)
 
-instance monoidConj :: BooleanAlgebra a => Monoid (Conj a) where
-  mempty = Conj top
+instance monoidConj :: HeytingAlgebra a => Monoid (Conj a) where
+  mempty = Conj tt
 
-instance semiringConj :: BooleanAlgebra a => Semiring (Conj a) where
-  zero = Conj top
-  one = Conj bottom
+instance semiringConj :: HeytingAlgebra a => Semiring (Conj a) where
+  zero = Conj tt
+  one = Conj ff
   add (Conj a) (Conj b) = Conj (conj a b)
   mul (Conj a) (Conj b) = Conj (disj a b)

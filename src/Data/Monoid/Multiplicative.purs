@@ -8,7 +8,6 @@ import Control.Extend (class Extend)
 import Control.Monad (class Monad)
 
 import Data.Bounded (class Bounded, top, bottom)
-import Data.BoundedOrd (class BoundedOrd)
 import Data.Eq (class Eq, (==))
 import Data.Functor (class Functor)
 import Data.Functor.Invariant (class Invariant)
@@ -38,8 +37,6 @@ instance ordMultiplicative :: (Ord a) => Ord (Multiplicative a) where
 instance boundedMultiplicative :: Bounded a => Bounded (Multiplicative a) where
   top = Multiplicative top
   bottom = Multiplicative bottom
-
-instance boundedOrdMultiplicative :: BoundedOrd a => BoundedOrd (Multiplicative a)
 
 instance functorMultiplicative :: Functor Multiplicative where
   map f (Multiplicative x) = Multiplicative (f x)

@@ -8,7 +8,6 @@ import Control.Extend (class Extend)
 import Control.Monad (class Monad)
 
 import Data.Bounded (class Bounded, top, bottom)
-import Data.BoundedOrd (class BoundedOrd)
 import Data.Eq (class Eq, (==))
 import Data.Functor (class Functor)
 import Data.Functor.Invariant (class Invariant)
@@ -38,8 +37,6 @@ instance ordAdditive :: Ord a => Ord (Additive a) where
 instance boundedAdditive :: Bounded a => Bounded (Additive a) where
   top = Additive top
   bottom = Additive bottom
-
-instance boundedOrdAdditive :: BoundedOrd a => BoundedOrd (Additive a)
 
 instance functorAdditive :: Functor Additive where
   map f (Additive x) = Additive (f x)
