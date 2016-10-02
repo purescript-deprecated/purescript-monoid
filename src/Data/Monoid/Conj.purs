@@ -1,22 +1,14 @@
 module Data.Monoid.Conj where
 
-import Control.Applicative (class Applicative)
-import Control.Apply (class Apply)
-import Control.Bind (class Bind)
+import Prelude
+
 import Control.Comonad (class Comonad)
 import Control.Extend (class Extend)
-import Control.Monad (class Monad)
 
-import Data.HeytingAlgebra (class HeytingAlgebra, conj, disj, ff, tt)
-import Data.Bounded (class Bounded, top, bottom)
-import Data.Eq (class Eq, (==))
-import Data.Functor (class Functor)
 import Data.Functor.Invariant (class Invariant)
+import Data.HeytingAlgebra (ff, tt)
 import Data.Monoid (class Monoid)
-import Data.Ord (class Ord, compare)
-import Data.Semigroup (class Semigroup, (<>))
-import Data.Semiring (class Semiring)
-import Data.Show (class Show, show)
+import Data.Newtype (class Newtype, unwrap)
 
 -- | Monoid under conjuntion.
 -- |
@@ -26,18 +18,13 @@ import Data.Show (class Show, show)
 -- | ```
 newtype Conj a = Conj a
 
-runConj :: forall a. Conj a -> a
-runConj (Conj x) = x
+derive instance newtypeConj :: Newtype (Conj a) _
 
-instance eqConj :: Eq a => Eq (Conj a) where
-  eq (Conj x) (Conj y) = x == y
+derive newtype instance eqConj :: Eq a => Eq (Conj a)
 
-instance ordConj :: Ord a => Ord (Conj a) where
-  compare (Conj x) (Conj y) = compare x y
+derive newtype instance ordConj :: Ord a => Ord (Conj a)
 
-instance boundedConj :: Bounded a => Bounded (Conj a) where
-  top = Conj top
-  bottom = Conj bottom
+derive newtype instance boundedConj :: Bounded a => Bounded (Conj a)
 
 instance functorConj :: Functor Conj where
   map f (Conj x) = Conj (f x)
@@ -60,7 +47,7 @@ instance extendConj :: Extend Conj where
   extend f x = Conj (f x)
 
 instance comonadConj :: Comonad Conj where
-  extract = runConj
+  extract = unwrap
 
 instance showConj :: (Show a) => Show (Conj a) where
   show (Conj a) = "(Conj " <> show a <> ")"

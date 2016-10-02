@@ -1,9 +1,10 @@
 module Data.Monoid.Endo where
 
-import Data.Function (id, (<<<))
+import Prelude
+
 import Data.Functor.Invariant (class Invariant)
 import Data.Monoid (class Monoid)
-import Data.Semigroup (class Semigroup)
+import Data.Newtype (class Newtype)
 
 -- | Monoid of endomorphisms under composition.
 -- |
@@ -14,8 +15,7 @@ import Data.Semigroup (class Semigroup)
 -- | ```
 newtype Endo a = Endo (a -> a)
 
-runEndo :: forall a. Endo a -> a -> a
-runEndo (Endo f) = f
+derive instance newtypeEndo :: Newtype (Endo a) _
 
 instance invariantEndo :: Invariant Endo where
   imap ab ba (Endo f) = Endo (ab <<< f <<< ba)

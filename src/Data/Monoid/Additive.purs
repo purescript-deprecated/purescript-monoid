@@ -1,21 +1,13 @@
 module Data.Monoid.Additive where
 
-import Control.Applicative (class Applicative)
-import Control.Apply (class Apply)
-import Control.Bind (class Bind)
+import Prelude
+
 import Control.Comonad (class Comonad)
 import Control.Extend (class Extend)
-import Control.Monad (class Monad)
 
-import Data.Bounded (class Bounded, top, bottom)
-import Data.Eq (class Eq, (==))
-import Data.Functor (class Functor)
 import Data.Functor.Invariant (class Invariant)
 import Data.Monoid (class Monoid)
-import Data.Ord (class Ord, compare)
-import Data.Semigroup (class Semigroup, (<>))
-import Data.Semiring (class Semiring, (+), zero)
-import Data.Show (class Show, show)
+import Data.Newtype (class Newtype, unwrap)
 
 -- | Monoid and semigroup for semirings under addition.
 -- |
@@ -25,18 +17,13 @@ import Data.Show (class Show, show)
 -- | ```
 newtype Additive a = Additive a
 
-runAdditive :: forall a. Additive a -> a
-runAdditive (Additive x) = x
+derive instance newtypeAdditive :: Newtype (Additive a) _
 
-instance eqAdditive :: Eq a => Eq (Additive a) where
-  eq (Additive x) (Additive y) = x == y
+derive newtype instance eqAdditive :: Eq a => Eq (Additive a)
 
-instance ordAdditive :: Ord a => Ord (Additive a) where
-  compare (Additive x) (Additive y) = compare x y
+derive newtype instance ordAdditive :: Ord a => Ord (Additive a)
 
-instance boundedAdditive :: Bounded a => Bounded (Additive a) where
-  top = Additive top
-  bottom = Additive bottom
+derive newtype instance boundedAdditive :: Bounded a => Bounded (Additive a)
 
 instance functorAdditive :: Functor Additive where
   map f (Additive x) = Additive (f x)
@@ -59,7 +46,7 @@ instance extendAdditive :: Extend Additive where
   extend f x = Additive (f x)
 
 instance comonadAdditive :: Comonad Additive where
-  extract = runAdditive
+  extract = unwrap
 
 instance showAdditive :: Show a => Show (Additive a) where
   show (Additive a) = "(Additive " <> show a <> ")"

@@ -1,21 +1,13 @@
 module Data.Monoid.Multiplicative where
 
-import Control.Applicative (class Applicative)
-import Control.Apply (class Apply)
-import Control.Bind (class Bind)
+import Prelude
+
 import Control.Comonad (class Comonad)
 import Control.Extend (class Extend)
-import Control.Monad (class Monad)
 
-import Data.Bounded (class Bounded, top, bottom)
-import Data.Eq (class Eq, (==))
-import Data.Functor (class Functor)
 import Data.Functor.Invariant (class Invariant)
 import Data.Monoid (class Monoid)
-import Data.Ord (class Ord, compare)
-import Data.Semigroup (class Semigroup, (<>))
-import Data.Semiring (class Semiring, (*), one)
-import Data.Show (class Show, show)
+import Data.Newtype (class Newtype, unwrap)
 
 -- | Monoid and semigroup for semirings under multiplication.
 -- |
@@ -25,18 +17,13 @@ import Data.Show (class Show, show)
 -- | ```
 newtype Multiplicative a = Multiplicative a
 
-runMultiplicative :: forall a. Multiplicative a -> a
-runMultiplicative (Multiplicative x) = x
+derive instance newtypeMultiplicative :: Newtype (Multiplicative a) _
 
-instance eqMultiplicative :: (Eq a) => Eq (Multiplicative a) where
-  eq (Multiplicative x) (Multiplicative y) = x == y
+derive newtype instance eqMultiplicative :: Eq a => Eq (Multiplicative a)
 
-instance ordMultiplicative :: (Ord a) => Ord (Multiplicative a) where
-  compare (Multiplicative x) (Multiplicative y) = compare x y
+derive newtype instance ordMultiplicative :: Ord a => Ord (Multiplicative a)
 
-instance boundedMultiplicative :: Bounded a => Bounded (Multiplicative a) where
-  top = Multiplicative top
-  bottom = Multiplicative bottom
+derive newtype instance boundedMultiplicative :: Bounded a => Bounded (Multiplicative a)
 
 instance functorMultiplicative :: Functor Multiplicative where
   map f (Multiplicative x) = Multiplicative (f x)
@@ -59,7 +46,7 @@ instance extendMultiplicative :: Extend Multiplicative where
   extend f x = Multiplicative (f x)
 
 instance comonadMultiplicative :: Comonad Multiplicative where
-  extract = runMultiplicative
+  extract = unwrap
 
 instance showMultiplicative :: (Show a) => Show (Multiplicative a) where
   show (Multiplicative a) = "(Multiplicative " <> show a <> ")"

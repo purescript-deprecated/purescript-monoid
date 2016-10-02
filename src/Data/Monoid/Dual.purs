@@ -1,20 +1,13 @@
 module Data.Monoid.Dual where
 
-import Control.Applicative (class Applicative)
-import Control.Apply (class Apply)
-import Control.Bind (class Bind)
+import Prelude
+
 import Control.Comonad (class Comonad)
 import Control.Extend (class Extend)
-import Control.Monad (class Monad)
 
-import Data.Bounded (class Bounded, top, bottom)
-import Data.Eq (class Eq, (==))
-import Data.Functor (class Functor)
 import Data.Functor.Invariant (class Invariant)
 import Data.Monoid (class Monoid, mempty)
-import Data.Ord (class Ord, compare)
-import Data.Semigroup (class Semigroup, (<>))
-import Data.Show (class Show, show)
+import Data.Newtype (class Newtype, unwrap)
 
 -- | The dual of a monoid.
 -- |
@@ -24,18 +17,13 @@ import Data.Show (class Show, show)
 -- | ```
 newtype Dual a = Dual a
 
-runDual :: forall a. Dual a -> a
-runDual (Dual x) = x
+derive instance newtypeDual :: Newtype (Dual a) _
 
-instance eqDual :: Eq a => Eq (Dual a) where
-  eq (Dual x) (Dual y) = x == y
+derive newtype instance eqDual :: Eq a => Eq (Dual a)
 
-instance ordDual :: Ord a => Ord (Dual a) where
-  compare (Dual x) (Dual y) = compare x y
+derive newtype instance ordDual :: Ord a => Ord (Dual a)
 
-instance boundedDual :: Bounded a => Bounded (Dual a) where
-  top = Dual top
-  bottom = Dual bottom
+derive newtype instance boundedDual :: Bounded a => Bounded (Dual a)
 
 instance functorDual :: Functor Dual where
   map f (Dual x) = Dual (f x)
@@ -58,7 +46,7 @@ instance extendDual :: Extend Dual where
   extend f x = Dual (f x)
 
 instance comonadDual :: Comonad Dual where
-  extract = runDual
+  extract = unwrap
 
 instance showDual :: Show a => Show (Dual a) where
   show (Dual a) = "(Dual " <> show a <> ")"

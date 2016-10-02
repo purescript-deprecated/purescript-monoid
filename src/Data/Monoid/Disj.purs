@@ -1,21 +1,14 @@
 module Data.Monoid.Disj where
 
-import Control.Applicative (class Applicative)
-import Control.Apply (class Apply)
-import Control.Bind (class Bind)
+import Prelude
+
 import Control.Comonad (class Comonad)
 import Control.Extend (class Extend)
-import Control.Monad (class Monad)
 
-import Data.HeytingAlgebra (class HeytingAlgebra, conj, disj, ff, tt)
-import Data.Bounded (class Bounded, top, bottom)
-import Data.Eq (class Eq, (==))
-import Data.Functor (class Functor)
+import Data.Functor.Invariant (class Invariant)
+import Data.HeytingAlgebra (ff, tt)
 import Data.Monoid (class Monoid)
-import Data.Ord (class Ord, compare)
-import Data.Semigroup (class Semigroup, (<>))
-import Data.Semiring (class Semiring)
-import Data.Show (class Show, show)
+import Data.Newtype (class Newtype, unwrap)
 
 -- | Monoid under disjuntion.
 -- |
@@ -25,21 +18,19 @@ import Data.Show (class Show, show)
 -- | ```
 newtype Disj a = Disj a
 
-runDisj :: forall a. Disj a -> a
-runDisj (Disj x) = x
+derive instance newtypeDisj :: Newtype (Disj a) _
 
-instance eqDisj :: Eq a => Eq (Disj a) where
-  eq (Disj x) (Disj y) = x == y
+derive newtype instance eqDisj :: Eq a => Eq (Disj a)
 
-instance ordDisj :: Ord a => Ord (Disj a) where
-  compare (Disj x) (Disj y) = compare x y
+derive newtype instance ordDisj :: Ord a => Ord (Disj a)
 
-instance boundedDisj :: Bounded a => Bounded (Disj a) where
-  top = Disj top
-  bottom = Disj bottom
+derive newtype instance boundedDisj :: Bounded a => Bounded (Disj a)
 
 instance functorDisj :: Functor Disj where
   map f (Disj x) = Disj (f x)
+
+instance invariantDisj :: Invariant Disj where
+  imap f _ (Disj x) = Disj (f x)
 
 instance applyDisj :: Apply Disj where
   apply (Disj f) (Disj x) = Disj (f x)
@@ -56,7 +47,7 @@ instance extendDisj :: Extend Disj where
   extend f x = Disj (f x)
 
 instance comonadDisj :: Comonad Disj where
-  extract = runDisj
+  extract = unwrap
 
 instance showDisj :: Show a => Show (Disj a) where
   show (Disj a) = "(Disj " <> show a <> ")"
