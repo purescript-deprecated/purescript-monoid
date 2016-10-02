@@ -24,9 +24,7 @@ derive newtype instance eqConj :: Eq a => Eq (Conj a)
 
 derive newtype instance ordConj :: Ord a => Ord (Conj a)
 
-instance boundedConj :: Bounded a => Bounded (Conj a) where
-  top = Conj top
-  bottom = Conj bottom
+derive newtype instance boundedConj :: Bounded a => Bounded (Conj a)
 
 instance functorConj :: Functor Conj where
   map f (Conj x) = Conj (f x)

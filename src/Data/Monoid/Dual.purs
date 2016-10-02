@@ -23,9 +23,7 @@ derive newtype instance eqDual :: Eq a => Eq (Dual a)
 
 derive newtype instance ordDual :: Ord a => Ord (Dual a)
 
-instance boundedDual :: Bounded a => Bounded (Dual a) where
-  top = Dual top
-  bottom = Dual bottom
+derive newtype instance boundedDual :: Bounded a => Bounded (Dual a)
 
 instance functorDual :: Functor Dual where
   map f (Dual x) = Dual (f x)

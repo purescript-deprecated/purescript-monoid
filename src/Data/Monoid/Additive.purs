@@ -23,9 +23,7 @@ derive newtype instance eqAdditive :: Eq a => Eq (Additive a)
 
 derive newtype instance ordAdditive :: Ord a => Ord (Additive a)
 
-instance boundedAdditive :: Bounded a => Bounded (Additive a) where
-  top = Additive top
-  bottom = Additive bottom
+derive newtype instance boundedAdditive :: Bounded a => Bounded (Additive a)
 
 instance functorAdditive :: Functor Additive where
   map f (Additive x) = Additive (f x)

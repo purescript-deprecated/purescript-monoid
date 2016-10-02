@@ -24,9 +24,7 @@ derive newtype instance eqDisj :: Eq a => Eq (Disj a)
 
 derive newtype instance ordDisj :: Ord a => Ord (Disj a)
 
-instance boundedDisj :: Bounded a => Bounded (Disj a) where
-  top = Disj top
-  bottom = Disj bottom
+derive newtype instance boundedDisj :: Bounded a => Bounded (Disj a)
 
 instance functorDisj :: Functor Disj where
   map f (Disj x) = Disj (f x)

@@ -19,13 +19,11 @@ newtype Multiplicative a = Multiplicative a
 
 derive instance newtypeMultiplicative :: Newtype (Multiplicative a) _
 
-derive newtype instance eqMultiplicative :: (Eq a) => Eq (Multiplicative a)
+derive newtype instance eqMultiplicative :: Eq a => Eq (Multiplicative a)
 
-derive newtype instance ordMultiplicative :: (Ord a) => Ord (Multiplicative a)
+derive newtype instance ordMultiplicative :: Ord a => Ord (Multiplicative a)
 
-instance boundedMultiplicative :: Bounded a => Bounded (Multiplicative a) where
-  top = Multiplicative top
-  bottom = Multiplicative bottom
+derive newtype instance boundedMultiplicative :: Bounded a => Bounded (Multiplicative a)
 
 instance functorMultiplicative :: Functor Multiplicative where
   map f (Multiplicative x) = Multiplicative (f x)
