@@ -1,11 +1,11 @@
 module Data.Monoid
   ( class Monoid, mempty
+  , power
   , module Data.Semigroup
   ) where
 
-import Data.Function (const)
+import Prelude
 import Data.Semigroup (class Semigroup, append, (<>))
-import Data.Unit (Unit, unit)
 
 -- | A `Monoid` is a `Semigroup` with a value `mempty`, which is both a
 -- | left and right unit for the associative operation `<>`:
@@ -31,3 +31,23 @@ instance monoidString :: Monoid String where
 
 instance monoidArray :: Monoid (Array a) where
   mempty = []
+
+-- | Append a value to itself a certain number of times. For the
+-- | `Multiplicative` type, and for a non-negative power, this is the same as
+-- | normal number exponentiation.
+-- |
+-- | If the second argument is negative this function will return `mempty`
+-- | (*unlike* normal number exponentiation). The `Monoid` constraint alone
+-- | is not enough to write a `power` function with the property that `power x
+-- | n` cancels with `power x (-n)`, i.e. `power x n <> power x (-n) = mempty`.
+-- | For that, we would additionally need the ability to invert elements, i.e.
+-- | a Group.
+power :: forall m. Monoid m => m -> Int -> m
+power x = go
+  where
+  go :: Int -> m
+  go p
+    | p <= 0         = mempty
+    | p == 1         = x
+    | p `mod` 2 == 0 = let x' = go (p/2) in x' <> x'
+    | otherwise      = let x' = go (p/2) in x' <> x' <> x
