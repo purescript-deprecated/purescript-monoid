@@ -8,20 +8,20 @@ import Data.Newtype (class Newtype)
 
 -- | Monoid of endomorphisms under composition.
 -- |
--- | Composes of functions of type `a -> a`:
+-- | Composes morphisms of type `c a a`:
 -- | ``` purescript
 -- | Endo f <> Endo g == Endo (f <<< g)
 -- | mempty :: Endo _ == Endo id
 -- | ```
-newtype Endo a = Endo (a -> a)
+newtype Endo c a = Endo (c a a)
 
-derive instance newtypeEndo :: Newtype (Endo a) _
+derive instance newtypeEndo :: Newtype (Endo c a) _
 
-instance invariantEndo :: Invariant Endo where
+instance invariantEndo :: Invariant (Endo (->)) where
   imap ab ba (Endo f) = Endo (ab <<< f <<< ba)
 
-instance semigroupEndo :: Semigroup (Endo a) where
+instance semigroupEndo :: Semigroupoid c => Semigroup (Endo c a) where
   append (Endo f) (Endo g) = Endo (f <<< g)
 
-instance monoidEndo :: Monoid (Endo a) where
+instance monoidEndo :: Category c => Monoid (Endo c a) where
   mempty = Endo id
