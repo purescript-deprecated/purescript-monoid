@@ -23,6 +23,9 @@ class Semigroup m <= Monoid m where
 instance monoidUnit :: Monoid Unit where
   mempty = unit
 
+instance monoidOrdering :: Monoid Ordering where
+  mempty = EQ
+
 instance monoidFn :: Monoid b => Monoid (a -> b) where
   mempty = const mempty
 
