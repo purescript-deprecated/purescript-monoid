@@ -8,6 +8,9 @@ import Data.Newtype (class Newtype)
 
 -- | Monoid of endomorphisms under composition.
 -- |
+-- | For a generalization to all instances of `Semigroupoid` and `Category` see
+-- | `Data.Profunctor.Join`.
+-- |
 -- | Composes of functions of type `a -> a`:
 -- | ``` purescript
 -- | Endo f <> Endo g == Endo (f <<< g)
