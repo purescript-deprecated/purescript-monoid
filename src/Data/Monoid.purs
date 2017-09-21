@@ -54,3 +54,8 @@ power x = go
     | p == 1         = x
     | p `mod` 2 == 0 = let x' = go (p/2) in x' <> x'
     | otherwise      = let x' = go (p/2) in x' <> x' <> x
+
+-- | Allow or "truncate" a Monoid to its `mempty` value based on a condition.
+guard :: forall m. Monoid m => Boolean -> m -> m
+guard true a = a
+guard false _ = mempty
