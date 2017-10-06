@@ -1,6 +1,7 @@
 module Data.Monoid
   ( class Monoid, mempty
   , power
+  , guard
   , module Data.Semigroup
   ) where
 
