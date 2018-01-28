@@ -47,14 +47,19 @@ instance monoidArray :: Monoid (Array a) where
 -- | For that, we would additionally need the ability to invert elements, i.e.
 -- | a Group.
 power :: forall m. Monoid m => m -> Int -> m
-power x = go
+power x p
+  | p <= 0    = mempty
+  | otherwise = go p
   where
+  -- optimize dictionary lookup
+  append :: m -> m -> m
+  append = (<>)
+
   go :: Int -> m
-  go p
-    | p <= 0         = mempty
-    | p == 1         = x
-    | p `mod` 2 == 0 = let x' = go (p/2) in x' <> x'
-    | otherwise      = let x' = go (p/2) in x' <> x' <> x
+  go p'
+    | p' `mod` 2 == 0 = let x' = go (p'/2) in x' `append` x'
+    | p' == 1         = x
+    | otherwise      = let x' = go (p'/2) in x' `append` x' `append` x
 
 -- | Allow or "truncate" a Monoid to its `mempty` value based on a condition.
 guard :: forall m. Monoid m => Boolean -> m -> m
