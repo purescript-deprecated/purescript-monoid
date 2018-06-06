@@ -1,16 +1,5 @@
-# purescript-monoid
+# DEPRECATED
 
-[![Latest release](http://img.shields.io/github/release/purescript/purescript-monoid.svg)](https://github.com/purescript/purescript-monoid/releases)
-[![Build status](https://travis-ci.org/purescript/purescript-monoid.svg?branch=master)](https://travis-ci.org/purescript/purescript-monoid)
+The library is no longer maintained under this repository, it has been merged into to [`purescript-prelude`](https://github.com/purescript/purescript-prelude).
 
-Monoid algebraic structure.
-
-## Installation
-
-```
-bower install purescript-monoid
-```
-
-## Documentation
-
-Module documentation is [published on Pursuit](http://pursuit.purescript.org/packages/purescript-monoid).
+[The previous releases](https://github.com/purescript-deprecated/purescript-monoid/releases) will continue to work for older libraries that still depend on them.
