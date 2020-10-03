@@ -2,10 +2,11 @@
   "name": "purescript-monoid",
   "homepage": "https://github.com/purescript/purescript-monoid",
   "description": "Monoid algebraic structure",
+  "keywords": ["pursuit-deprecated"],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/purescript/purescript-monoid.git"
+    "url": "https://github.com/purescript/purescript-monoid.git"
   },
   "ignore": [
     "**/.*",
